@@ -2,10 +2,12 @@ class Screen
 {
   //Number corrosponding to particular screen.
   int screen;
+  float transparency;
   
   //Parameterised constructor. When the object is created the particular screen is set.
   Screen(int screen) {
     this.screen = screen;
+    this.transparency = 255;
   }
   
   //Draw the screen
@@ -59,6 +61,7 @@ class Screen
       {
         if(mouseY > 280 && mouseY < 340 && this.screen == 2)
         {
+          
           fill(255, 0, 0);
           rect(490, 280, 287, 62);
           fill(0);
@@ -85,5 +88,31 @@ class Screen
       text("By Mark Barrett", 1130, 620);
     }
     
+    //Level screen. Middle
+    if(this.screen == 3) {
+      
+      if(this.transparency > 0) {
+        this.transparency -= 1;
+      }{
+      background(85, 63, 42);
+      strokeWeight(10);
+      stroke(0);
+      strokeCap(SQUARE);
+      fill(179,179,179);
+      //Top room
+      rect(width/2-150, -10, 300, 85);
+      //Main Room
+      rect(width/2-500, 75, 1000, 500);
+      //Top Door
+      fill(85, 63, 42);
+      noStroke();
+      rect(width/2-75, 60, 150, 30);
+      fill(0, 0, 0, this.transparency);
+      rect(0, 0, 1280, 650);
+      fill(255, 0, 0, this.transparency);
+      textSize(60);
+      text("12:08am - Level 1", width/2-200, height/2);
+    }
+  } 
   }
 }
