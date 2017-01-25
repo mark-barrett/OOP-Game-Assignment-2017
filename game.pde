@@ -15,10 +15,11 @@ void setup()
   gameObjects.add(player1);
   
 }
+
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(1);
+Screen screen = new Screen(3);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -32,6 +33,7 @@ void draw()
   //Keep drawing the screen
   screen.render();
   player1.create();
+  player1.render();
 }
 
 void mousePressed()

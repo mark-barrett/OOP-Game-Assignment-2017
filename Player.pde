@@ -27,14 +27,23 @@ class Player extends GameObject
   {
     shape = createShape(GROUP);
     
-    
+    stroke(0);
+    strokeWeight(3);
+    fill(210, 177, 136);
     // Make two shapes
     PShape head = createShape(ELLIPSE, 0, 0, 50, 50);
-    PShape body = createShape(RECT, 0, 50, 50, 100);
+    PShape arm1 = createShape(RECT, -35, 0, 15, 50, 7);
+    PShape arm2 = createShape(RECT, 20, 0, 15, 50, 7);
+    fill(0, 255, 0);
+    PShape sleeve1 = createShape(RECT, -35, 0, 15, 15);
+    PShape sleeve2 = createShape(RECT, 20, 0, 15, 15);
     
     // Add the two "child" shapes to the parent group
     shape.addChild(head);
-    shape.addChild(body);
+    shape.addChild(arm1);
+    shape.addChild(arm2);
+    shape.addChild(sleeve1);
+    shape.addChild(sleeve2);
   }
   
   //Renders the player to the screen
