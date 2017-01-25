@@ -1,16 +1,18 @@
 class Player extends GameObject
 {
   PShape shape;
+  float theta;
   char up, down, left, right, fire, reload;
   int health;
   int ammo;
   
   //Constructor
-  Player(float x, float y, float size, char up, char down, char left, char right, char fire)
+  Player(float x, float y, float theta, float size, char up, char down, char left, char right, char fire)
   {
     //Players intial position and size
     pos= new PVector(x, y);
     this.size = size;
+    this.theta = theta;
     
     //Controls
     this.up = up;
@@ -20,6 +22,7 @@ class Player extends GameObject
     this.fire = fire;
     this.health = 100;
     this.ammo = 100;
+    create();
   }
   
   //Creates the player
@@ -49,14 +52,25 @@ class Player extends GameObject
   //Renders the player to the screen
   void render()
   {
+    pushMatrix();
+    translate(pos.x, pos.y);
     // Draw the group
-    translate(width/2, height/2);
-    shape(shape);
+    rotate(theta);
+    shape(shape, 0, 0);
+    popMatrix();
   }
   
   //Updates parameters used for movements, firing, health etc
   void update()
   {
-    
+    if (checkKey(left))
+    {
+      theta -= 0.1f;   
+      println("Heya");
+    }
+    if (checkKey(right))
+    {
+      theta += 0.1f;
+    }
   }
 }
