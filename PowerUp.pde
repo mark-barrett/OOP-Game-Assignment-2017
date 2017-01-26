@@ -30,9 +30,15 @@ class PowerUp extends GameObject
     shape.addChild(frontRight);
   }
   
-  void render()
+  void render(String name, float posx, float posy)
   {
-    
+    shape(shape, posx, posy);
+    //Speed Cola
+    fill(255);
+    textFont(perkFont);
+    textSize(30);
+    text(name, posx+20, posy+25);
+    textFont(zombieFont);
   }
   
   void update()

@@ -17,8 +17,11 @@ void setup()
   gameObjects.add(player1);
   
   //Create perks
-  speed = new SpeedPowerUp(200, 'q', color(151, 82, 0), color(186, 192, 140));
+  speed = new SpeedPowerUp(500, 'q', color(151, 82, 0), color(186, 192, 140));
   gameObjects.add(speed);
+  
+  health = new HealthPowerUp(500, 'q', color(204, 204, 0), color(186, 192, 140));
+  gameObjects.add(health);
   
 }
 
@@ -36,6 +39,7 @@ Player player1;
 
 //Perks
 SpeedPowerUp speed;
+HealthPowerUp health;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -56,6 +60,8 @@ void draw()
     player1.update();
     speed.render();
     speed.update();
+    health.render();
+    health.update();
   }
 }
 

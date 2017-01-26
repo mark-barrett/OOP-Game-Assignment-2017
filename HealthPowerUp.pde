@@ -1,8 +1,8 @@
-class SpeedPowerUp extends PowerUp 
+class HealthPowerUp extends PowerUp
 {
   boolean bought;
   
-  SpeedPowerUp(float price, char buyKey, color boxColour, color panelColour)
+  HealthPowerUp(float price, char buyKey, color boxColour, color panelColour)
   {
     super(price, buyKey, boxColour, panelColour);
     this.bought = false;
@@ -10,48 +10,39 @@ class SpeedPowerUp extends PowerUp
   
   void render()
   {
-    super.render("Stamin-up", 250, 80);
+    super.render("Juggernog", 875, 80);
   }
   
   void update()
   {
-    if(player1.pos.x > 250 && player1.pos.x < 400)
+    if(player1.pos.x > 875 && player1.pos.x < 1025)
     {
       if(player1.pos.y > 80 && player1.pos.y < 180)
       {
-        println("Speed");
         textSize(30);
         fill(255, 255, 0);
-        text("Press Q to buy Stamin-up [Cost: 500]", width/2-200, height/2);
-        
-    //Check only if it is not bought
-    if(bought == false)
+        text("Press Q to buy Juggernog [Cost: 500]", width/2-200, height/2);
+        if(bought == false)
     {
-      //If the key is pressed
       if (checkKey(super.buyKey))
       {
-        //Check the player has enough money
         if(player1.score >= 500)
         {
-          //Deducted money
           player1.score -= super.price;
-          //Say they have bought it
           bought = true;
-          //Play sound
           spendMoney.play();
-          //Give perk
           player1.health += 100;
         }
       }
     }
     else if(bought == true)
     {
-      fill(204, 204, 0);
+      fill(151, 82, 0);
       rect(10, 500, 50, 50);
       fill(255);
       textFont(perkFont);
       textSize(40);
-      text("J", 25, 535);
+      text("S", 25, 535);
       textFont(zombieFont);
     }
       }
