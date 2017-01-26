@@ -17,7 +17,7 @@ void setup()
   gameObjects.add(player1);
   
   //Create perks
-  speed = new SpeedPowerUp(200, 'q');
+  speed = new SpeedPowerUp(200, 'q', color(151, 82, 0), color(186, 192, 140));
   gameObjects.add(speed);
   
 }

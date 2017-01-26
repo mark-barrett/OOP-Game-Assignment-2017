@@ -1,39 +1,8 @@
-class SpeedPowerUp extends GameObject implements PowerUp {
+class SpeedPowerUp extends PowerUp {
   
-  PShape shape;
-  float price;
-  char buyKey;
-  boolean bought;
-  
-  SpeedPowerUp(float price, char buyKey)
+  SpeedPowerUp(float price, char buyKey, color boxColour, color panelColour)
   {
-    this.price = price;
-    this.buyKey = buyKey;
-    this.bought = false;
-    create();
-  }
-  
-  void applyTo(Player p)
-  {
-    p.speedPowerUp = true;
-    p.score -= this.price;
-  }
-  
-  void create()
-  {
-    shape = createShape(GROUP);
-    
-    strokeWeight(2);
-    //Creating the perk shape
-    fill(151, 82, 0);
-    PShape box = createShape(RECT, 0, 0, 150, 35, 2);
-    fill(186, 192, 140);
-    PShape frontLeft = createShape(RECT, 5, 35, 67.5, 10);
-    PShape frontRight = createShape(RECT, 77.5, 35, 67.5, 10);
-   
-    shape.addChild(box);
-    shape.addChild(frontLeft);
-    shape.addChild(frontRight);
+    super(price, buyKey, boxColour, panelColour);
   }
   
   void render()
@@ -59,26 +28,28 @@ class SpeedPowerUp extends GameObject implements PowerUp {
       }
     }
     
-    if(bought == false)
+    if(super.bought == false)
     {
-      if (checkKey(buyKey))
+      if (checkKey(super.buyKey))
       {
         if(player1.score >= 500)
         {
           player1.score -= 500;
-          bought = true;
+          super.bought = true;
           spendMoney.play();
           player1.power += 4;
         }
       }
     }
-    else if(bought == true)
+    else if(super.bought == true)
     {
       fill(151, 82, 0);
       rect(10, 500, 50, 50);
       fill(255);
+      textFont(perkFont);
       textSize(40);
-      text("S", 20, 500);
+      text("S", 25, 535);
+      textFont(zombieFont);
     }
   }
 }
