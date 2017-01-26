@@ -83,6 +83,15 @@ class Player extends GameObject
           pos.add(PVector.mult(forward, power));
         }
       }
+      
+      if(pos.x < width/2-450)
+      {
+        pos.x += 1;
+      }
+      if(pos.x > (width/2-500) + 950)
+      {
+        pos.x -= 1;
+      }
     }
     if (checkKey(left))
     {
