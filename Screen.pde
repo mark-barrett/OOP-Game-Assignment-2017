@@ -107,6 +107,14 @@ class Screen
       fill(85, 63, 42);
       noStroke();
       rect(width/2-75, 60, 150, 30);
+      
+      //Score
+      fill(255, 0, 0, 150);
+      rect(1150, 500, 125, 40);
+      textSize(35);
+      fill(255);
+      text(player1.score, 1189, 532);
+      
       fill(0, 0, 0, this.transparency);
       rect(0, 0, 1280, 650);
       fill(255, 0, 0, this.transparency);

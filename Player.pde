@@ -5,12 +5,16 @@ class Player extends GameObject
   char up, down, left, right, fire, reload;
   int health;
   int ammo;
+  float power;
+  int score;
+  boolean speedPowerUp;
   
   //Constructor
   Player(float x, float y, float theta, float size, char up, char down, char left, char right, char fire)
   {
     //Players intial position and size
-    pos= new PVector(x, y);
+    pos = new PVector(x, y);
+    forward = new PVector(0, -1);
     this.size = size;
     this.theta = theta;
     
@@ -22,6 +26,9 @@ class Player extends GameObject
     this.fire = fire;
     this.health = 100;
     this.ammo = 100;
+    this.power = 2;
+    this.score = 500;
+    this.speedPowerUp = false;
     create();
   }
   
@@ -33,6 +40,7 @@ class Player extends GameObject
     stroke(0);
     strokeWeight(3);
     fill(210, 177, 136);
+    
     // Make two shapes
     PShape head = createShape(ELLIPSE, 0, 0, 50, 50);
     PShape arm1 = createShape(RECT, -35, 0, 15, 50, 7);
@@ -63,10 +71,22 @@ class Player extends GameObject
   //Updates parameters used for movements, firing, health etc
   void update()
   {
+    forward.x = -sin(theta);
+    forward.y = cos(theta);
+    
+    if(checkKey(up))
+    {
+      if(pos.x > width/2-450 && pos.x < (width/2-500) + 950)
+      {
+        if(pos.y > 75 && pos.y < 575) 
+        {
+          pos.add(PVector.mult(forward, power));
+        }
+      }
+    }
     if (checkKey(left))
     {
       theta -= 0.1f;   
-      println("Heya");
     }
     if (checkKey(right))
     {
