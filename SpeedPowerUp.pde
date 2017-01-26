@@ -25,7 +25,7 @@ class SpeedPowerUp extends PowerUp
         text("Press Q to buy Stamin-up [Cost: 500]", width/2-200, height/2);
         
     //Check only if it is not bought
-    if(bought == false)
+    if(this.bought == false)
     {
       //If the key is pressed
       if (checkKey(super.buyKey))
@@ -36,26 +36,25 @@ class SpeedPowerUp extends PowerUp
           //Deducted money
           player1.score -= super.price;
           //Say they have bought it
-          bought = true;
+          this.bought = true;
           //Play sound
           spendMoney.play();
           //Give perk
-          player1.health += 100;
+          player1.power += 4;
         }
       }
     }
-    else if(bought == true)
+    }
+    }
+    if(this.bought == true)
     {
-      fill(204, 204, 0);
-      rect(10, 500, 50, 50);
+      fill(151, 82, 0);
+      rect(75, 500, 50, 50);
       fill(255);
       textFont(perkFont);
       textSize(40);
-      text("J", 25, 535);
+      text("S", 88, 535);
       textFont(zombieFont);
     }
-      }
-    }
-    
   }
 }

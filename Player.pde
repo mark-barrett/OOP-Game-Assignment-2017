@@ -27,7 +27,7 @@ class Player extends GameObject
     this.health = 100;
     this.ammo = 100;
     this.power = 2;
-    this.score = 500;
+    this.score = 1000;
     this.speedPowerUp = false;
     create();
   }
@@ -78,7 +78,7 @@ class Player extends GameObject
     {
       if(pos.x > width/2-450 && pos.x < (width/2-500) + 950)
       {
-        if(pos.y > 75 && pos.y < 575) 
+        if(pos.y > 120 && pos.y < 530) 
         {
           pos.add(PVector.mult(forward, power));
         }
@@ -91,6 +91,16 @@ class Player extends GameObject
       if(pos.x > (width/2-500) + 950)
       {
         pos.x -= 1;
+      }
+      
+      if(pos.y < 120)
+      {
+        pos.y += 1;
+      }
+      
+      if(pos.y > 530)
+      {
+        pos.y -= 1;
       }
     }
     if (checkKey(left))
