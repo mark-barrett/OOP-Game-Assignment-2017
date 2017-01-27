@@ -11,6 +11,7 @@ void setup()
   //Creating sounds
   buttonPressSound = new SoundFile(this, "buttonPress.mp3");
   spendMoney = new SoundFile(this, "spendMoney.mp3");
+  reload = new SoundFile(this, "reload.mp3");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -37,6 +38,7 @@ Screen screen = new Screen(3);
 //Declaring sounds
 SoundFile buttonPressSound;
 SoundFile spendMoney;
+SoundFile reload;
 
 //Player
 Player player1;

@@ -41,9 +41,30 @@ class Colt extends Gun
   //Check for purchase
   void update()
   {
-    if(player1.pos.y > height/2-20 && player1.pos.y < height/2-20 + 42)
+    if(player1.pos.y > height/2-25 && player1.pos.y < height/2-20 + 47)
     {
-      println("hey");
+      if(player1.pos.x > 1050 && player1.pos.x < 1133)
+      {
+        textSize(30);
+        fill(255, 255, 0);
+        if(this.bought == false)
+        {
+          text("Press Q to buy Colt M1911 [Cost: 1000]", width/2-200, height/2);
+          if (checkKey(super.buyKey))
+          {
+            if(player1.score >= 1000)
+            {
+            player1.score -= super.price;
+            this.bought = true;
+            spendMoney.play();
+            reload.play();
+            }
+          }
+        }
+        else {
+          text("Press Q to buy Ammo [Cost: 500]", width/2-200, height/2);
+        }
+      }
     }
     
   }

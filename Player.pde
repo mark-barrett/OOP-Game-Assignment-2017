@@ -1,6 +1,7 @@
 class Player extends GameObject
 {
-  PShape shape;
+  PShape notHoldingGun;
+  PShape holdingPistol;
   float theta;
   char up, down, left, right, fire, reload;
   int health;
@@ -33,7 +34,7 @@ class Player extends GameObject
   //Creates the player
   void create()
   {
-    shape = createShape(GROUP);
+    notHoldingGun = createShape(GROUP);
     
     stroke(0);
     strokeWeight(3);
@@ -48,11 +49,47 @@ class Player extends GameObject
     PShape sleeve2 = createShape(RECT, 20, 0, 15, 15);
     
     // Add the two "child" shapes to the parent group
-    shape.addChild(head);
-    shape.addChild(arm1);
-    shape.addChild(arm2);
-    shape.addChild(sleeve1);
-    shape.addChild(sleeve2);
+    notHoldingGun.addChild(head);
+    notHoldingGun.addChild(arm1);
+    notHoldingGun.addChild(arm2);
+    notHoldingGun.addChild(sleeve1);
+    notHoldingGun.addChild(sleeve2);
+    
+    holdingPistol = createShape(GROUP);
+    
+    stroke(0);
+    strokeWeight(3);
+    fill(210, 177, 136);
+    
+    // Make two shapes
+    PShape head2 = createShape(ELLIPSE, 0, 0, 50, 50);
+    PShape arm12 = createShape();
+    arm12.beginShape();
+    arm12.vertex(-40, 0);
+    arm12.vertex(-10, 50);
+    arm12.vertex(0, 50);
+    arm12.vertex(-25, 0);
+    arm12.endShape(CLOSE);
+    
+    PShape arm22 = createShape();
+    arm22.beginShape();
+    arm22.vertex(25, 0);
+    arm22.vertex(0, 50);
+    arm22.vertex(10, 50);
+    arm22.vertex(40, 0);
+    arm22.endShape(CLOSE);
+    
+    fill(0, 255, 0);
+    PShape sleeve12 = createShape(RECT, -35, 0, 10, 10);
+    PShape sleeve22 = createShape(RECT, 25, 0, 10, 10);
+    
+    // Add the two "child" shapes to the parent group
+    holdingPistol.addChild(head2);
+    holdingPistol.addChild(arm12);
+    holdingPistol.addChild(arm22);
+    holdingPistol.addChild(sleeve12);
+    holdingPistol.addChild(sleeve22);
+    
   }
   
   //Renders the player to the screen
@@ -62,7 +99,15 @@ class Player extends GameObject
     translate(pos.x, pos.y);
     // Draw the group
     rotate(theta);
-    shape(shape, 0, 0);
+    
+    if(colt.bought == true)
+    {
+      shape(holdingPistol, 0, 0);
+    }
+    else
+    {
+      shape(notHoldingGun, 0, 0);
+    }
     popMatrix();
   }
   
