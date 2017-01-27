@@ -108,6 +108,17 @@ class Screen
       noStroke();
       rect(width/2-75, 60, 150, 30);
       
+      //Pistol on wall
+      strokeWeight(2);
+      stroke(0);
+      textSize(10);
+      textFont(defaultFont);
+      fill(153, 153, 153);
+      rect(1123, height/2-20, 10, 42);
+      fill(0);
+      text("M1911", 1060, height/2+10);
+      textFont(zombieFont);
+
       //Score
       fill(255, 0, 0, 150);
       rect(1150, 500, 125, 40);

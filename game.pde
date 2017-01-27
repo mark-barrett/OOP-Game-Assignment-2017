@@ -23,6 +23,10 @@ void setup()
   health = new HealthPowerUp(500, 'q', color(204, 204, 0), color(186, 192, 140));
   gameObjects.add(health);
   
+  //Guns
+  colt = new Colt(1000, 'q');
+  gameObjects.add(colt);
+  
 }
 
 import processing.sound.*;
@@ -40,6 +44,9 @@ Player player1;
 //Perks
 SpeedPowerUp speed;
 HealthPowerUp health;
+
+//Guns
+Colt colt;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -62,6 +69,7 @@ void draw()
     speed.update();
     health.render();
     health.update();
+    colt.render();
   }
 }
 

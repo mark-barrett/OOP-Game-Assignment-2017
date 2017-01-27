@@ -4,7 +4,6 @@ class Player extends GameObject
   float theta;
   char up, down, left, right, fire, reload;
   int health;
-  int ammo;
   float power;
   int score;
   boolean speedPowerUp;
@@ -25,7 +24,6 @@ class Player extends GameObject
     this.right = right;
     this.fire = fire;
     this.health = 100;
-    this.ammo = 100;
     this.power = 2;
     this.score = 1000;
     this.speedPowerUp = false;

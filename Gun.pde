@@ -1,18 +1,22 @@
 class Gun extends GameObject
 {
-  void crete()
-  {
-    
-  }
+  float price;
+  char buyKey;
+  boolean bought;
   
-  void render()
+  Gun(float price, char buyKey)
   {
-    
+    this.price = price;
+    this.buyKey = buyKey;
+    this.bought = true;
   }
   
   void update()
   {
-    
+  }
+  
+  void render()
+  {
   }
   
 }

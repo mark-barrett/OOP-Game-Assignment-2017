@@ -19,7 +19,6 @@ class SpeedPowerUp extends PowerUp
     {
       if(player1.pos.y > 80 && player1.pos.y < 180)
       {
-        println("Speed");
         textSize(30);
         fill(255, 255, 0);
         text("Press Q to buy Stamin-up [Cost: 500]", width/2-200, height/2);
