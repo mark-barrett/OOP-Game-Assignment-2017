@@ -6,6 +6,7 @@ class Colt extends Gun
   {
     super(price, buyKey);
     create();
+    super.bought = false;
   }
   
   void create()
@@ -29,9 +30,21 @@ class Colt extends Gun
     if(super.bought == true)
     {
       pushMatrix();
-      rotate(player1.theta/100);
-      shape(shape, player1.pos.x-5, player1.pos.y+20);
+      translate(player1.pos.x, player1.pos.y);
+      rotate(player1.theta);
+      shape(shape, -5, 30);
       popMatrix();
     }
+    update();
+  }
+  
+  //Check for purchase
+  void update()
+  {
+    if(player1.pos.y > height/2-20 && player1.pos.y < height/2-20 + 42)
+    {
+      println("hey");
+    }
+    
   }
 }
