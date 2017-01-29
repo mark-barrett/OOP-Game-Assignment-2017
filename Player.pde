@@ -1,7 +1,7 @@
 class Player extends GameObject
 {
   PShape notHoldingGun;
-  PShape holdingPistol;
+  PShape holdingGun;
   float theta;
   char up, down, left, right, fire, reload;
   int health;
@@ -55,7 +55,7 @@ class Player extends GameObject
     notHoldingGun.addChild(sleeve1);
     notHoldingGun.addChild(sleeve2);
     
-    holdingPistol = createShape(GROUP);
+    holdingGun = createShape(GROUP);
     
     stroke(0);
     strokeWeight(3);
@@ -84,11 +84,11 @@ class Player extends GameObject
     PShape sleeve22 = createShape(RECT, 25, 0, 10, 10);
     
     // Add the two "child" shapes to the parent group
-    holdingPistol.addChild(head2);
-    holdingPistol.addChild(arm12);
-    holdingPistol.addChild(arm22);
-    holdingPistol.addChild(sleeve12);
-    holdingPistol.addChild(sleeve22);
+    holdingGun.addChild(head2);
+    holdingGun.addChild(arm12);
+    holdingGun.addChild(arm22);
+    holdingGun.addChild(sleeve12);
+    holdingGun.addChild(sleeve22);
     
   }
   
@@ -102,7 +102,11 @@ class Player extends GameObject
     
     if(colt.bought == true)
     {
-      shape(holdingPistol, 0, 0);
+      shape(holdingGun, 0, 0);
+    }
+    else if(mp40.bought == true)
+    {
+      shape(holdingGun, 0, 0);
     }
     else
     {

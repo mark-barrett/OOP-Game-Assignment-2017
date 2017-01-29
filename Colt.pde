@@ -6,7 +6,7 @@ class Colt extends Gun
   {
     super(price, buyKey);
     create();
-    super.bought = false;
+    super.bought = true;
   }
   
   void create()
@@ -34,6 +34,13 @@ class Colt extends Gun
       rotate(player1.theta);
       shape(shape, -5, 30);
       popMatrix();
+      
+      fill(153, 153, 153);
+      rect(width/2-65, height-59, 50, 50);
+      textFont(defaultFont);
+      textSize(19);
+      fill(0);
+      text("M1911", width/2-64, height-30);
     }
     update();
   }

@@ -41,15 +41,15 @@ class MP40 extends Gun
   //Check for purchase
   void update()
   {
-    if(player1.pos.y > height/2-25 && player1.pos.y < height/2-20 + 47)
+    if(player1.pos.y > height/2-30 && player1.pos.y < height/2-30 + 70)
     {
-      if(player1.pos.x > 1050 && player1.pos.x < 1133)
+      if(player1.pos.x > 150 && player1.pos.x < 220)
       {
         textSize(30);
         fill(255, 255, 0);
         if(this.bought == false)
         {
-          text("Press Q to buy MP40 [Cost: 1000]", width/2-200, height/2);
+          text("Press Q to buy MP40 [Cost: 2000]", width/2-200, height/2);
           if (checkKey(super.buyKey))
           {
             if(player1.score >= 1000)

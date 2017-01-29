@@ -28,12 +28,15 @@ void setup()
   colt = new Colt(1000, 'q');
   gameObjects.add(colt);
   
+  mp40 = new MP40(2000, 'q');
+  gameObjects.add(mp40);
+  
 }
 
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(1);
+Screen screen = new Screen(3);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -49,6 +52,7 @@ HealthPowerUp health;
 
 //Guns
 Colt colt;
+MP40 mp40;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -72,6 +76,7 @@ void draw()
     health.render();
     health.update();
     colt.render();
+    mp40.render();
   }
 }
 
