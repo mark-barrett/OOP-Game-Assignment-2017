@@ -9,6 +9,9 @@ class Player extends GameObject
   int score;
   boolean speedPowerUp;
   float ammo;
+  float fireRate = 2;
+  float toPass = 1.0 / fireRate;
+  float elapsed = toPass;
   
   //Constructor
   Player(float x, float y, float theta, float size, char up, char down, char left, char right, char fire)
@@ -30,6 +33,7 @@ class Player extends GameObject
     this.score = 2000;
     this.speedPowerUp = false;
     this.ammo = 100;
+    this.fire = 'e';
     create();
   }
   
@@ -160,5 +164,15 @@ class Player extends GameObject
     {
       theta += 0.1f;
     }
+    
+    if(checkKey(fire) && elapsed > toPass &&  this.ammo > 0)
+    {
+      PVector bp = PVector.add(pos, PVector.mult(forward, 40));
+      Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
+      gameObjects.add(b);
+      elapsed = 0;
+      this.ammo--;
+    }
+    elapsed += timeDelta;
   }
 }

@@ -63,6 +63,8 @@ PFont defaultFont;
 
 boolean[] keys = new boolean[1000];
 
+float timeDelta = 1.0f / 60.00f;
+
 void draw()
 {
   //Keep drawing the screen
@@ -77,6 +79,16 @@ void draw()
     health.update();
     colt.render();
     mp40.render();
+  }
+  
+  //Render bullets
+  for(int i=gameObjects.size()-1; i >= 0; i--)
+  {
+    GameObject go = gameObjects.get(i);
+    if(go instanceof Bullet) {
+      Bullet b = (Bullet) go; //If it is indeed a player you can cast it
+      b.render();
+    }
   }
 }
 
