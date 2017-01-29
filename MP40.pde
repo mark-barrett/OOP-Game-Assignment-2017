@@ -1,8 +1,8 @@
-class Colt extends Gun
+class MP40 extends Gun
 {
   PShape shape;
   
-  Colt(float price, char buyKey)
+  MP40(float price, char buyKey)
   {
     super(price, buyKey);
     create();
@@ -16,7 +16,7 @@ class Colt extends Gun
     strokeWeight(2);
     //Creating the gun shape
     fill(153, 153, 153);
-    PShape gun = createShape(RECT, 0, 0, 10, 50);
+    PShape gun = createShape(RECT, 0, 0, 10, 70);
     fill(153, 102, 51);
     PShape crossHair = createShape(RECT, 3, 3, 3, 10);
    
@@ -49,7 +49,7 @@ class Colt extends Gun
         fill(255, 255, 0);
         if(this.bought == false)
         {
-          text("Press Q to buy Colt M1911 [Cost: 1000]", width/2-200, height/2);
+          text("Press Q to buy MP40 [Cost: 1000]", width/2-200, height/2);
           if (checkKey(super.buyKey))
           {
             if(player1.score >= 1000)

@@ -26,7 +26,7 @@ class Player extends GameObject
     this.fire = fire;
     this.health = 100;
     this.power = 2;
-    this.score = 1000;
+    this.score = 2000;
     this.speedPowerUp = false;
     create();
   }

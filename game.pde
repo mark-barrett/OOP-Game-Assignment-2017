@@ -33,7 +33,7 @@ void setup()
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(3);
+Screen screen = new Screen(1);
 
 //Declaring sounds
 SoundFile buttonPressSound;
