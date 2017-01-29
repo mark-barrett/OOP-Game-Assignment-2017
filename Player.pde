@@ -8,6 +8,7 @@ class Player extends GameObject
   float power;
   int score;
   boolean speedPowerUp;
+  float ammo;
   
   //Constructor
   Player(float x, float y, float theta, float size, char up, char down, char left, char right, char fire)
@@ -28,6 +29,7 @@ class Player extends GameObject
     this.power = 2;
     this.score = 2000;
     this.speedPowerUp = false;
+    this.ammo = 100;
     create();
   }
   

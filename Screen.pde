@@ -130,7 +130,14 @@ class Screen
       rect(1150, 500, 125, 40);
       textSize(35);
       fill(255);
-      text(player1.score, 1189, 532);
+      text(player1.score, 1180, 532);
+      
+      //Ammo
+      textSize(28);
+      fill(255, 0, 0, 150);
+      rect(1150, 550, 125, 40);
+      fill(255);
+      text("Ammo: "+round(player1.ammo), width/2+512, height-70);
       
       fill(0, 0, 0, this.transparency);
       rect(0, 0, 1280, 650);
