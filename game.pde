@@ -12,6 +12,8 @@ void setup()
   buttonPressSound = new SoundFile(this, "buttonPress.mp3");
   spendMoney = new SoundFile(this, "spendMoney.mp3");
   reload = new SoundFile(this, "reload.mp3");
+  pistolFire = new SoundFile(this, "pistolFire.mp3");
+  emptyGunShot = new SoundFile(this, "emptyGunShot.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -42,6 +44,8 @@ Screen screen = new Screen(3);
 SoundFile buttonPressSound;
 SoundFile spendMoney;
 SoundFile reload;
+SoundFile pistolFire;
+SoundFile emptyGunShot;
 
 //Player
 Player player1;
@@ -88,6 +92,10 @@ void draw()
     if(go instanceof Bullet) {
       Bullet b = (Bullet) go; //If it is indeed a player you can cast it
       b.render();
+      if(b.pos.x < 170 || b.pos.x > 1100 || b.pos.y < 110 || b.pos.y > 550)
+      {
+        gameObjects.remove(b);
+      }
     }
   }
 }

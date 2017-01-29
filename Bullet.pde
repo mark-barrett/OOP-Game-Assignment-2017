@@ -3,7 +3,7 @@ class Bullet extends GameObject
   float timeToLive;
   float theta;
   float alive;
-  float speed = 1;
+  float speed = 3;
   
   Bullet(float x, float y, float theta, float size, float timeToLive)
   {

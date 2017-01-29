@@ -29,10 +29,10 @@ class Player extends GameObject
     this.right = right;
     this.fire = fire;
     this.health = 100;
-    this.power = 2;
+    this.power = 3;
     this.score = 2000;
     this.speedPowerUp = false;
-    this.ammo = 100;
+    this.ammo = 20;
     this.fire = 'e';
     create();
   }
@@ -165,13 +165,21 @@ class Player extends GameObject
       theta += 0.1f;
     }
     
-    if(checkKey(fire) && elapsed > toPass &&  this.ammo > 0)
+    if(checkKey(fire) && elapsed > toPass)
     {
-      PVector bp = PVector.add(pos, PVector.mult(forward, 40));
-      Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
-      gameObjects.add(b);
-      elapsed = 0;
-      this.ammo--;
+      if(this.ammo > 0)
+      {
+        PVector bp = PVector.add(pos, PVector.mult(forward, 40));
+        Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
+        gameObjects.add(b);
+        elapsed = 0;
+        pistolFire.play();
+        this.ammo--;
+      }
+      else if(this.ammo == 0)
+      {
+        emptyGunShot.play();
+      }
     }
     elapsed += timeDelta;
   }

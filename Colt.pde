@@ -48,6 +48,7 @@ class Colt extends Gun
   //Check for purchase
   void update()
   {
+    textFont(zombieFont);
     if(player1.pos.y > height/2-25 && player1.pos.y < height/2-20 + 47)
     {
       if(player1.pos.x > 1050 && player1.pos.x < 1133)
@@ -70,6 +71,16 @@ class Colt extends Gun
         }
         else {
           text("Press Q to buy Ammo [Cost: 500]", width/2-200, height/2);
+          if (checkKey(super.buyKey))
+          {
+            if(player1.score >= 500 && player1.ammo == 0)
+            {
+             player1.score -= 500;
+             player1.ammo += 20;
+             spendMoney.play();
+             reload.play();
+            }
+          }
         }
       }
     }
