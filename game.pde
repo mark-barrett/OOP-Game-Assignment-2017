@@ -84,6 +84,8 @@ void draw()
     colt.render();
     mp40.render();
   }
+  println("MP40:"+mp40.ammo);
+  println("Colt:"+colt.ammo);
   
   //Render bullets
   for(int i=gameObjects.size()-1; i >= 0; i--)

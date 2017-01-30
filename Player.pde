@@ -9,9 +9,10 @@ class Player extends GameObject
   int score;
   boolean speedPowerUp;
   float ammo;
-  float fireRate = 2;
-  float toPass = 1.0 / fireRate;
-  float elapsed = toPass;
+  float fireRate = 1.8;
+  float colttoPass = 1.0 / fireRate;
+  float mp40toPass = 1.0/5;
+  float elapsed = colttoPass;
   int activeGun;
   
   //Constructor
@@ -168,30 +169,54 @@ class Player extends GameObject
     }
     
     if(checkKey('r'))
-    {
-      if(player1.activeGun == 1)
+    {  
+      if(colt.bought == true && mp40.bought == true)
       {
-        player1.activeGun = 2;
-      }
-      else if(player1.activeGun == 2) {
-        player1.activeGun = 1;
+        if(player1.activeGun == 1)
+        {
+          player1.activeGun = 2;
+          ammo = mp40.ammo;
+        }
+        else if(player1.activeGun == 2) {
+          player1.activeGun = 1;
+          ammo = colt.ammo;
+        }
       }
     }
     
     println(player1.activeGun);
     
-    if(checkKey(fire) && elapsed > toPass)
+    //If the m1190 is to be fired
+    if(checkKey(fire) && elapsed > colttoPass && player1.activeGun == 1 && colt.bought == true)
     {
-      if(this.ammo > 0)
+      if(colt.ammo > 0)
       {
         PVector bp = PVector.add(pos, PVector.mult(forward, 40));
         Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
         gameObjects.add(b);
         elapsed = 0;
         pistolFire.play();
-        this.ammo--;
+        colt.ammo--;
       }
-      else if(this.ammo == 0)
+      else if(colt.ammo == 0)
+      {
+        emptyGunShot.play();
+      }
+    }
+    
+    //If the mp40 is to be fired
+    if(checkKey(fire) && elapsed > mp40toPass && player1.activeGun == 2 && mp40.bought == true)
+    {
+      if(mp40.ammo > 0)
+      {
+        PVector bp = PVector.add(pos, PVector.mult(forward, 40));
+        Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
+        gameObjects.add(b);
+        elapsed = 0;
+        pistolFire.play();
+        mp40.ammo--;
+      }
+      else if(mp40.ammo == 0)
       {
         emptyGunShot.play();
       }

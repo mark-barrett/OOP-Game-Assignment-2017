@@ -2,12 +2,14 @@ class MP40 extends Gun
 {
   PShape shape;
   boolean bought;
+  float ammo;
   
   MP40(float price, char buyKey)
   {
     super(price, buyKey);
     create();
     this.bought = false;
+    this.ammo = 100;
   }
   
   void create()
@@ -60,6 +62,7 @@ class MP40 extends Gun
             this.bought = true;
             spendMoney.play();
             reload.play();
+            player1.ammo = ammo;
             }
           }
         }

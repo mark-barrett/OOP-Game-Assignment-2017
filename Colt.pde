@@ -2,12 +2,14 @@ class Colt extends Gun
 {
   PShape shape;
   boolean bought;
+  float ammo;
   
   Colt(float price, char buyKey)
   {
     super(price, buyKey);
     create();
     this.bought = false;
+    this.ammo = 20;
   }
   
   void create()
@@ -61,6 +63,7 @@ class Colt extends Gun
             this.bought = true;
             spendMoney.play();
             reload.play();
+            player1.ammo = ammo;
             }
           }
         }
@@ -71,7 +74,7 @@ class Colt extends Gun
             if(player1.score >= 500 && player1.ammo == 0)
             {
              player1.score -= 500;
-             player1.ammo += 20;
+             ammo += 20;
              spendMoney.play();
              reload.play();
             }

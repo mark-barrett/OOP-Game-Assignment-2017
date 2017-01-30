@@ -137,7 +137,13 @@ class Screen
       fill(255, 0, 0, 150);
       rect(1150, 550, 125, 40);
       fill(255);
-      text("Ammo: "+round(player1.ammo), width/2+512, height-70);
+      
+      if(player1.activeGun == 1) {
+        text("Ammo: "+round(colt.ammo), width/2+512, height-70);
+      }
+      if(player1.activeGun == 2) {
+        text("Ammo: "+round(mp40.ammo), width/2+512, height-70);
+      }
       
       fill(0, 0, 0, this.transparency);
       rect(0, 0, 1280, 650);
