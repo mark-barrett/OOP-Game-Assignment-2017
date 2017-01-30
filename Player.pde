@@ -12,6 +12,7 @@ class Player extends GameObject
   float fireRate = 2;
   float toPass = 1.0 / fireRate;
   float elapsed = toPass;
+  int activeGun;
   
   //Constructor
   Player(float x, float y, float theta, float size, char up, char down, char left, char right, char fire)
@@ -30,10 +31,11 @@ class Player extends GameObject
     this.fire = fire;
     this.health = 100;
     this.power = 3;
-    this.score = 2000;
+    this.score = 3000;
     this.speedPowerUp = false;
     this.ammo = 20;
     this.fire = 'e';
+    this.activeGun = 0;
     create();
   }
   
@@ -164,6 +166,19 @@ class Player extends GameObject
     {
       theta += 0.1f;
     }
+    
+    if(checkKey('r'))
+    {
+      if(player1.activeGun == 1)
+      {
+        player1.activeGun = 2;
+      }
+      else if(player1.activeGun == 2) {
+        player1.activeGun = 1;
+      }
+    }
+    
+    println(player1.activeGun);
     
     if(checkKey(fire) && elapsed > toPass)
     {

@@ -1,12 +1,13 @@
 class Colt extends Gun
 {
   PShape shape;
+  boolean bought;
   
   Colt(float price, char buyKey)
   {
     super(price, buyKey);
     create();
-    super.bought = true;
+    this.bought = false;
   }
   
   void create()
@@ -27,20 +28,13 @@ class Colt extends Gun
   
   void render()
   {
-    if(super.bought == true)
+    if(this.bought == true && player1.activeGun == 1)
     {
       pushMatrix();
       translate(player1.pos.x, player1.pos.y);
       rotate(player1.theta);
       shape(shape, -5, 30);
       popMatrix();
-      
-      fill(153, 153, 153);
-      rect(width/2-65, height-59, 50, 50);
-      textFont(defaultFont);
-      textSize(19);
-      fill(0);
-      text("M1911", width/2-64, height-30);
     }
     update();
   }
@@ -63,6 +57,7 @@ class Colt extends Gun
             if(player1.score >= 1000)
             {
             player1.score -= super.price;
+            player1.activeGun = 1;
             this.bought = true;
             spendMoney.play();
             reload.play();

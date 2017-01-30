@@ -1,12 +1,13 @@
 class MP40 extends Gun
 {
   PShape shape;
+  boolean bought;
   
   MP40(float price, char buyKey)
   {
     super(price, buyKey);
     create();
-    super.bought = false;
+    this.bought = false;
   }
   
   void create()
@@ -27,7 +28,7 @@ class MP40 extends Gun
   
   void render()
   {
-    if(super.bought == true)
+    if(this.bought == true && player1.activeGun == 2)
     {
       pushMatrix();
       translate(player1.pos.x, player1.pos.y);
@@ -55,6 +56,7 @@ class MP40 extends Gun
             if(player1.score >= 1000)
             {
             player1.score -= super.price;
+            player1.activeGun = 2;
             this.bought = true;
             spendMoney.play();
             reload.play();

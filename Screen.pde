@@ -144,6 +144,25 @@ class Screen
       fill(255, 0, 0, this.transparency);
       textSize(60);
       text("12:08am - Level 1", width/2-200, height/2);
+      
+            if(player1.activeGun == 1)
+      { 
+        fill(153, 153, 153);
+        rect(width/2-50, height-59, 50, 50);
+        textFont(defaultFont);
+        textSize(19);
+        fill(0);
+        text("M1911", width/2-49, height-30);
+      }
+      else if(player1.activeGun == 2)
+      {
+        fill(153, 153, 153);
+        rect(width/2-50, height-59, 50, 50);
+        textFont(defaultFont);
+        textSize(19);
+        fill(0);
+        text("MP40", width/2-49, height-30);
+      }
     }
   } 
   }
