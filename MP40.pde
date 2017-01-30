@@ -61,13 +61,23 @@ class MP40 extends Gun
             player1.activeGun = 2;
             this.bought = true;
             spendMoney.play();
-            reload.play();
+            mp40reload.play();
             player1.ammo = ammo;
             }
           }
         }
         else {
           text("Press Q to buy Ammo [Cost: 500]", width/2-200, height/2);
+          if (checkKey(super.buyKey))
+          {
+            if(player1.score >= 500 && mp40.ammo == 0)
+            {
+             player1.score -= 500;
+             mp40.ammo += 100;
+             spendMoney.play();
+             mp40reload.play();
+            }
+          }
         }
       }
     }

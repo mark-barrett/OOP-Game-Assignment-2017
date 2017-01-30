@@ -151,7 +151,7 @@ class Screen
       textSize(60);
       text("12:08am - Level 1", width/2-200, height/2);
       
-            if(player1.activeGun == 1)
+      if(player1.activeGun == 1)
       { 
         fill(153, 153, 153);
         rect(width/2-50, height-59, 50, 50);

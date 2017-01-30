@@ -14,6 +14,7 @@ void setup()
   reload = new SoundFile(this, "reload.mp3");
   pistolFire = new SoundFile(this, "pistolFire.mp3");
   emptyGunShot = new SoundFile(this, "emptyGunShot.wav");
+  mp40reload = new SoundFile(this, "mp40reload.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -46,6 +47,7 @@ SoundFile spendMoney;
 SoundFile reload;
 SoundFile pistolFire;
 SoundFile emptyGunShot;
+SoundFile mp40reload;
 
 //Player
 Player player1;

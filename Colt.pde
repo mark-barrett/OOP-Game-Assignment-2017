@@ -71,10 +71,10 @@ class Colt extends Gun
           text("Press Q to buy Ammo [Cost: 500]", width/2-200, height/2);
           if (checkKey(super.buyKey))
           {
-            if(player1.score >= 500 && player1.ammo == 0)
+            if(player1.score >= 500 && colt.ammo == 0)
             {
              player1.score -= 500;
-             ammo += 20;
+             colt.ammo += 20;
              spendMoney.play();
              reload.play();
             }
