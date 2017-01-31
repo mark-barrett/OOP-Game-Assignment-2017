@@ -1,5 +1,6 @@
 class Screen
 {
+  boolean playSound;
   //Number corrosponding to particular screen.
   int screen;
   float transparency;
@@ -8,6 +9,7 @@ class Screen
   Screen(int screen) {
     this.screen = screen;
     this.transparency = 255;
+    this.playSound = false;
   }
   
   //Draw the screen
@@ -15,6 +17,11 @@ class Screen
   {
     //If the loading screen is to be displayed
     if(this.screen == 1) {
+      if(playSound == false)
+      {
+        ambience.play();
+        this.playSound = true;
+      }
       background(0);
       fill(0);
       stroke(0);
@@ -91,6 +98,12 @@ class Screen
     //Level screen. Middle
     if(this.screen == 3) {
       
+      if(playSound == true)
+      {
+        ambience.stop();
+        playSound = false;
+      }
+      
       if(this.transparency > 0) {
         this.transparency -= 1;
       }{
@@ -136,6 +149,13 @@ class Screen
       textSize(28);
       fill(255, 0, 0, 150);
       rect(1150, 550, 125, 40);
+      fill(255);
+      
+      //Gaps for zombies to come through
+      fill(0);
+      stroke(0);
+      rect(width/2-300, 560, 150, 30);
+      rect(width/2+150, 560, 150, 30);
       fill(255);
       
       if(player1.activeGun == 1) {

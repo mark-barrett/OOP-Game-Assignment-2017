@@ -15,6 +15,8 @@ void setup()
   pistolFire = new SoundFile(this, "pistolFire.mp3");
   emptyGunShot = new SoundFile(this, "emptyGunShot.wav");
   mp40reload = new SoundFile(this, "mp40reload.wav");
+  mp40fire = new SoundFile(this, "mp40fire.wav");
+  ambience = new SoundFile(this, "ambience.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -39,7 +41,7 @@ void setup()
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(3);
+Screen screen = new Screen(1);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -48,6 +50,8 @@ SoundFile reload;
 SoundFile pistolFire;
 SoundFile emptyGunShot;
 SoundFile mp40reload;
+SoundFile mp40fire;
+SoundFile ambience;
 
 //Player
 Player player1;

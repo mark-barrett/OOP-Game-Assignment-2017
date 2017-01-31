@@ -11,7 +11,7 @@ class Player extends GameObject
   float ammo;
   float fireRate = 1.8;
   float colttoPass = 1.0 / fireRate;
-  float mp40toPass = 1.0/5;
+  float mp40toPass = 1.0/8;
   float elapsed = colttoPass;
   int activeGun;
   
@@ -213,7 +213,7 @@ class Player extends GameObject
         Bullet b = new Bullet(bp.x, bp.y, theta, 20, 5);
         gameObjects.add(b);
         elapsed = 0;
-        pistolFire.play();
+        mp40fire.play();
         mp40.ammo--;
       }
       else if(mp40.ammo == 0)
