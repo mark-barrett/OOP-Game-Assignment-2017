@@ -64,6 +64,10 @@ HealthPowerUp health;
 Colt colt;
 MP40 mp40;
 
+//Barriers
+Barrier barrier1;
+Barrier barrier2;
+
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 //Fonts
