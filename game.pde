@@ -36,6 +36,10 @@ void setup()
   mp40 = new MP40(2000, 'q');
   gameObjects.add(mp40);
   
+  //Barriers
+  barrier1 = new Barrier(width/2-300, 560);
+  barrier2 = new Barrier(width/2+150, 560);
+  
 }
 
 import processing.sound.*;
@@ -93,6 +97,8 @@ void draw()
     health.update();
     colt.render();
     mp40.render();
+    barrier1.render();
+    barrier2.render();
   }
   println("MP40:"+mp40.ammo);
   println("Colt:"+colt.ammo);
