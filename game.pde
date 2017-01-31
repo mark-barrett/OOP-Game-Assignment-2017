@@ -108,6 +108,7 @@ void draw()
     mp40.render();
     barrier1.render();
     barrier2.render();
+    zombie1.render();
   }
   println("MP40:"+mp40.ammo);
   println("Colt:"+colt.ammo);
