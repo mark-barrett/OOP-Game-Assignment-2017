@@ -17,6 +17,7 @@ void setup()
   mp40reload = new SoundFile(this, "mp40reload.wav");
   mp40fire = new SoundFile(this, "mp40fire.wav");
   ambience = new SoundFile(this, "ambience.wav");
+  hammer = new SoundFile(this, "hammer.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -45,7 +46,7 @@ void setup()
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(1);
+Screen screen = new Screen(3);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -56,6 +57,7 @@ SoundFile emptyGunShot;
 SoundFile mp40reload;
 SoundFile mp40fire;
 SoundFile ambience;
+SoundFile hammer;
 
 //Player
 Player player1;

@@ -22,10 +22,10 @@ class Barrier extends GameObject
     fullStrength = createShape();
     fullStrength.beginShape();
     fullStrength.vertex(0,0);
-    fullStrength.vertex(150, 4);
-    fullStrength.vertex(150, -10);
+    fullStrength.vertex(150, 6);
+    fullStrength.vertex(150, -15);
     fullStrength.vertex(100, -6);
-    fullStrength.vertex(0, -10);
+    fullStrength.vertex(0, -15);
     fullStrength.endShape(CLOSE);
     fullStrength.setFill(color(172, 115, 57));
     
@@ -45,9 +45,9 @@ class Barrier extends GameObject
     lowStrength = createShape();
     lowStrength.beginShape();
     lowStrength.vertex(0, 0);
-    lowStrength.vertex(100, -2);
-    lowStrength.vertex(150, -3);
+    lowStrength.vertex(100, -6);
     lowStrength.vertex(150, -6);
+    lowStrength.vertex(150, -2);
     lowStrength.vertex(0, -6);
     lowStrength.endShape(CLOSE);
     lowStrength.setFill(color(172, 115, 57));
@@ -64,7 +64,7 @@ class Barrier extends GameObject
     {
       shape(halfStrength, pos.x, pos.y);
     }
-    else if(damage < 40)
+    else if(damage < 40 && damage > 0)
     {
       shape(lowStrength, pos.x, pos.y);
     }
@@ -73,7 +73,6 @@ class Barrier extends GameObject
   
   void update()
   {
-    println(timeDelta);
     if(player1.pos.x > pos.x && player1.pos.x < pos.x+150)
     {
       if(player1.pos.y > pos.y-50 && player1.pos.y < pos.y)
@@ -88,17 +87,21 @@ class Barrier extends GameObject
          {
            if (checkKey(this.buyKey))
            {
-               player1.score += 20;
+               player1.score += 100;
                this.damage += 20;
                this.bought = true;
                spendMoney.play();
+               hammer.play();
            }
          }
         }
       }
 
     }
-    println(this.damage);
+    if(frameCount % 120 == 0 && this.bought == true)
+    {
+     this.bought = false; 
+    }
     
     
   }
