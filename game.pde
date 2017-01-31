@@ -39,7 +39,11 @@ void setup()
   
   //Barriers
   barrier1 = new Barrier(width/2-300, 560);
+  gameObjects.add(barrier1);
   barrier2 = new Barrier(width/2+150, 560);
+  
+  //Zombies
+  zombie1 = new Zombie(height/2, width/2, 100);
   
 }
 
@@ -73,6 +77,9 @@ MP40 mp40;
 //Barriers
 Barrier barrier1;
 Barrier barrier2;
+
+//Barriers
+Zombie zombie1;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
