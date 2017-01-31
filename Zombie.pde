@@ -59,8 +59,34 @@ class Zombie extends GameObject
   
   void update()
   {
-    pos.x = lerp(pos.x, player1.pos.x, 0.005);
-    pos.y = lerp(pos.y, player1.pos.y, 0.005);
+    //If outside the room, move the zombie to the bottom of the screen where the barriers are
+    if(pos.x < width/2-450 || pos.x > (width/2-500) + 950)
+    {
+      pos.y = lerp(pos.y, height-50, 0.005);
+    }
+    
+    //If the zombie is at the bottom of the room get them to go through barrier 1
+    if(pos.y > height-75)
+    {
+      pos.x = lerp(pos.x, barrier1.pos.x, 0.005);
+    }
+    
+    //If the zombie is anywhere in front of the barrier, move them inside.
+    if(pos.x < (barrier1.pos.x+75))
+    {
+      pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
+    }
+    
+    //If the zombie is inside, lerp to the players position
+    if(pos.x > width/2-450 && pos.x < (width/2-500) + 950)
+    {
+      if(pos.y > 75 && pos.y < 575)
+      {
+        pos.x = lerp(pos.x, player1.pos.x, 0.005);
+        pos.y = lerp(pos.y, player1.pos.y, 0.005);
+      }
+    }
+        
     
   }
   

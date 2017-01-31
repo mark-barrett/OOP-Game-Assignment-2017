@@ -43,7 +43,7 @@ void setup()
   barrier2 = new Barrier(width/2+150, 560);
   
   //Zombies
-  zombie1 = new Zombie(height/2, width/2, 100);
+  zombie1 = new Zombie(width/2, height, 100);
   
 }
 
