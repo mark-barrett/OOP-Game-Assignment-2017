@@ -10,7 +10,7 @@ class Barrier extends GameObject
   Barrier(float x, float y)
   {
     pos = new PVector(x, y);
-    this.damage = 0;
+    this.damage = 60;
     this.buyKey = 'q';
     this.bought = false;
     create();

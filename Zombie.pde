@@ -51,7 +51,6 @@ class Zombie extends GameObject
   
   void render()
   {
-    
     shape(shape, pos.x, pos.y);
     update();
     
@@ -67,7 +66,7 @@ class Zombie extends GameObject
     }
     
     //If the zombie is at the bottom of the room get them to go through barrier 1
-    if(pos.y > height-75)
+    if(pos.y > height-90)
     {
       pos.x = lerp(pos.x, barrier1.pos.x, 0.005);
     }
@@ -75,7 +74,14 @@ class Zombie extends GameObject
     //If the zombie is anywhere in front of the barrier, move them inside.
     if(pos.x < (barrier1.pos.x+100))
     {
-      pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
+      if(barrier1.damage > 0)
+      {
+        barrier1.damage -= 0.3;
+      }
+      else {
+        pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
+      }
+      println(barrier1.damage);
     }
     
     //If the zombie is inside, lerp to the players position
@@ -90,7 +96,7 @@ class Zombie extends GameObject
     
     /* Loop through game objects and checking to see if a zombie is in the range of another.
     If it is then move it */
-      //Render bullets
+      //Check where zombies are.
   for(int i=gameObjects.size()-1; i >= 0; i--)
   {
     GameObject go = gameObjects.get(i);
