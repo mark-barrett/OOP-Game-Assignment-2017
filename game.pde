@@ -41,9 +41,18 @@ void setup()
   barrier1 = new Barrier(width/2-300, 560);
   gameObjects.add(barrier1);
   barrier2 = new Barrier(width/2+150, 560);
+  gameObjects.add(barrier2);
   
   //Zombies
-  zombie1 = new Zombie(width/2, height, 100);
+  zombie1 = new Zombie(width/2+200, height, 100);
+  gameObjects.add(zombie1);
+  
+  zombie2 = new Zombie(width/2+250, height, 100);
+  gameObjects.add(zombie2);
+  
+  zombie3 = new Zombie(width/2+300, height, 100);
+  gameObjects.add(zombie3);
+  
   
 }
 
@@ -78,8 +87,10 @@ MP40 mp40;
 Barrier barrier1;
 Barrier barrier2;
 
-//Barriers
+//Zombies
 Zombie zombie1;
+Zombie zombie2;
+Zombie zombie3;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -109,6 +120,8 @@ void draw()
     barrier1.render();
     barrier2.render();
     zombie1.render();
+    zombie2.render();
+    zombie3.render();
   }
   println("MP40:"+mp40.ammo);
   println("Colt:"+colt.ammo);

@@ -9,6 +9,7 @@ class Zombie extends GameObject
   Zombie(float x, float y, float speed)
   {
     pos = new PVector(x, y);
+    forward = new PVector(0, -1);
     this.speed = speed;
     this.health = 100;
     create();
@@ -35,7 +36,6 @@ class Zombie extends GameObject
     headWound.endShape();
     headWound.setStroke(color(144, 25, 28));
     headWound.setFill(color(37, 142, 42));
-    headWound.strokeWeight(5);
     PShape sleeve1 = createShape(RECT, -35, 0, 15, 15);
     PShape sleeve2 = createShape(RECT, 20, 0, 15, 15);
     sleeve1.setFill(color(235, 205, 164));
@@ -59,6 +59,7 @@ class Zombie extends GameObject
   
   void update()
   {
+    
     //If outside the room, move the zombie to the bottom of the screen where the barriers are
     if(pos.x < width/2-450 || pos.x > (width/2-500) + 950)
     {
@@ -72,7 +73,7 @@ class Zombie extends GameObject
     }
     
     //If the zombie is anywhere in front of the barrier, move them inside.
-    if(pos.x < (barrier1.pos.x+75))
+    if(pos.x < (barrier1.pos.x+100))
     {
       pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
     }
@@ -86,6 +87,25 @@ class Zombie extends GameObject
         pos.y = lerp(pos.y, player1.pos.y, 0.005);
       }
     }
+    
+    /* Loop through game objects and checking to see if a zombie is in the range of another.
+    If it is then move it */
+      //Render bullets
+  for(int i=gameObjects.size()-1; i >= 0; i--)
+  {
+    GameObject go = gameObjects.get(i);
+    if(go instanceof Zombie) {
+      Zombie z = (Zombie) go; //If it is indeed a player you can cast it
+      
+      if(pos.x < z.pos.x && pos.x > z.pos.x - 80) {
+        pos.x--;
+      }
+      if(pos.x > z.pos.x && pos.x < z.pos.x + 80) {
+        pos.x++;
+      }
+
+    }
+  }
         
     
   }
