@@ -51,9 +51,11 @@ class Zombie extends GameObject
   
   void render()
   {
-    shape(shape, pos.x, pos.y);
-    update();
-    
+    if(this.health > 0)
+    {
+      shape(shape, pos.x, pos.y);
+      update();
+    }
   }
   
   void update()
@@ -81,7 +83,6 @@ class Zombie extends GameObject
       else {
         pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
       }
-      println(barrier1.damage);
     }
     
     //If the zombie is inside, lerp to the players position
@@ -89,8 +90,8 @@ class Zombie extends GameObject
     {
       if(pos.y > 75 && pos.y < 575)
       {
-        pos.x = lerp(pos.x, player1.pos.x, 0.005);
-        pos.y = lerp(pos.y, player1.pos.y, 0.005);
+        pos.x = lerp(pos.x, player1.pos.x+20, 0.005);
+        pos.y = lerp(pos.y, player1.pos.y+20, 0.005);
       }
     }
     
@@ -111,6 +112,18 @@ class Zombie extends GameObject
       }
 
     }
+    if(go instanceof Bullet) {
+     Bullet b = (Bullet) go;
+     if(b.pos.x > pos.x - 30 && b.pos.x < pos.x + 30)
+     {
+       if(b.pos.y > pos.y - 30 && b.pos.y < pos.y + 30)
+       {
+        health -= 15; 
+        player1.score += 50;
+       }
+    }
+    }
+    println(health);
   }
         
     
