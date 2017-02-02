@@ -12,6 +12,7 @@ class Zombie extends GameObject
     forward = new PVector(0, -1);
     this.speed = speed;
     this.health = 100;
+    this.theta = 0;
     create();
     
   }
@@ -23,9 +24,9 @@ class Zombie extends GameObject
     // Make two shapes
     PShape head = createShape(ELLIPSE, 0, 0, 50, 50);
     head.setFill(color(37, 142, 42));
-    PShape arm = createShape(RECT, -35, 0, 15, 50, 7);
+    PShape arm = createShape(RECT, -35, 0, 15, -50, 7);
     arm.setFill(color(37, 142, 42));
-    PShape arm2 = createShape(RECT, 20, 0, 15, 50, 7);
+    PShape arm2 = createShape(RECT, 20, 0, 15, -50, 7);
     arm2.setFill(color(37, 142, 42));
     PShape headWound = createShape();
     headWound.beginShape();
@@ -36,8 +37,8 @@ class Zombie extends GameObject
     headWound.endShape();
     headWound.setStroke(color(144, 25, 28));
     headWound.setFill(color(37, 142, 42));
-    PShape sleeve1 = createShape(RECT, -35, 0, 15, 15);
-    PShape sleeve2 = createShape(RECT, 20, 0, 15, 15);
+    PShape sleeve1 = createShape(RECT, -35, 0, 15, -15);
+    PShape sleeve2 = createShape(RECT, 20, 0, 15, -15);
     sleeve1.setFill(color(235, 205, 164));
     sleeve2.setFill(color(235, 205, 164));
     
@@ -53,13 +54,21 @@ class Zombie extends GameObject
   {
     if(this.health > 0)
     {
-      shape(shape, pos.x, pos.y);
+      pushMatrix();
+      translate(pos.x, pos.y);
+      rotate(theta);
+      shape(shape, 0, 0);
+      popMatrix();
       update();
     }
   }
   
   void update()
   {
+    theta = atan2(player1.pos.y - pos.y, player1.pos.x - pos.x) + HALF_PI;
+    forward = new PVector(sin(theta), -cos(theta));    
+    forward.normalize();
+    pos.add(PVector.mult(forward, speed));
     
     //If outside the room, move the zombie to the bottom of the screen where the barriers are
     if(pos.x < width/2-450 || pos.x > (width/2-500) + 950)

@@ -44,13 +44,13 @@ void setup()
   gameObjects.add(barrier2);
   
   //Zombies
-  zombie1 = new Zombie(width/2+200, height, 100);
+  zombie1 = new Zombie(width/2+200, height, 0.5);
   gameObjects.add(zombie1);
   
-  zombie2 = new Zombie(width/2+250, height, 100);
+  zombie2 = new Zombie(width/2+250, height, 0.5);
   gameObjects.add(zombie2);
   
-  zombie3 = new Zombie(width/2+300, height, 100);
+  zombie3 = new Zombie(width/2+300, height, 0.5);
   gameObjects.add(zombie3);
   
   
