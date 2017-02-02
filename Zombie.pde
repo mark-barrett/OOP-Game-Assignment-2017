@@ -5,6 +5,7 @@ class Zombie extends GameObject
   PShape shape;
   int health;
   float speed;
+  float random;
   
   Zombie(float x, float y, float speed)
   {
@@ -13,14 +14,13 @@ class Zombie extends GameObject
     this.speed = speed;
     this.health = 100;
     this.theta = 0;
+    this.random = random(0,2);
     create();
-    
   }
   
   void create()
   {
     shape = createShape(GROUP);
-    
     // Make two shapes
     PShape head = createShape(ELLIPSE, 0, 0, 50, 50);
     head.setFill(color(37, 142, 42));
@@ -48,6 +48,19 @@ class Zombie extends GameObject
     shape.addChild(headWound);
     shape.addChild(sleeve1);
     shape.addChild(sleeve2);
+    
+   if(this.random > 0 && this.random <= 1)
+   {
+     zombieSound1.play();
+   }
+   if(this.random > 1 && this.random <= 2)
+   {
+     zombieSound2.play();
+   }
+   if(this.random > 2)
+   {
+     zombieSound3.play();
+   }
   }
   
   void render()
@@ -127,7 +140,7 @@ class Zombie extends GameObject
      {
        if(b.pos.y > pos.y - 30 && b.pos.y < pos.y + 30)
        {
-        health -= 15; 
+        health -= 7; 
         player1.score += 50;
        }
     }
@@ -138,5 +151,4 @@ class Zombie extends GameObject
     
   }
   
-  
-}
+ } 

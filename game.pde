@@ -18,6 +18,9 @@ void setup()
   mp40fire = new SoundFile(this, "mp40fire.wav");
   ambience = new SoundFile(this, "ambience.wav");
   hammer = new SoundFile(this, "hammer.wav");
+  zombieSound1 = new SoundFile(this, "zombie1.wav");
+  zombieSound2 = new SoundFile(this, "zombie2.wav");
+  zombieSound3 = new SoundFile(this, "zombie3.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -53,6 +56,12 @@ void setup()
   zombie3 = new Zombie(width/2+300, height, 0.5);
   gameObjects.add(zombie3);
   
+  zombie4 = new Zombie(width/2, height, 0.5);
+  gameObjects.add(zombie4);
+  
+  zombie5 = new Zombie(width/2-300, height, 0.5);
+  gameObjects.add(zombie5);
+  
   
 }
 
@@ -71,6 +80,9 @@ SoundFile mp40reload;
 SoundFile mp40fire;
 SoundFile ambience;
 SoundFile hammer;
+SoundFile zombieSound1;
+SoundFile zombieSound2;
+SoundFile zombieSound3;
 
 //Player
 Player player1;
@@ -91,6 +103,8 @@ Barrier barrier2;
 Zombie zombie1;
 Zombie zombie2;
 Zombie zombie3;
+Zombie zombie4;
+Zombie zombie5;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -122,6 +136,8 @@ void draw()
     zombie1.render();
     zombie2.render();
     zombie3.render();
+    zombie4.render();
+    zombie5.render();
   }
   println("MP40:"+mp40.ammo);
   println("Colt:"+colt.ammo);
