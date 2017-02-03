@@ -4,6 +4,7 @@ class Bullet extends GameObject
   float theta;
   float alive;
   float speed = 3;
+  boolean active;
   
   Bullet(float x, float y, float theta, float size, float timeToLive)
   {
@@ -13,17 +14,21 @@ class Bullet extends GameObject
     this.size = size;
     this.timeToLive = timeToLive;
     this.alive = 0;
+    this.active = true;
   }
   
   void render()
   {
-    pushMatrix();
-    translate((pos.x+(forward.x*30))-5, pos.y+(forward.y*30));
-    rotate(theta);
-    fill(156, 156, 156);
-    rect(0, 0, 4, 6);
-    popMatrix();
-    update(); 
+    if(active == true)
+    {
+      pushMatrix();
+      translate((pos.x+(forward.x*30))-5, pos.y+(forward.y*30));
+      rotate(theta);
+      fill(156, 156, 156);
+      rect(0, 0, 4, 6);
+      popMatrix();
+      update(); 
+    }
   }
   
   void update()

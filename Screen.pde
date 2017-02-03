@@ -97,6 +97,7 @@ class Screen
     
     //Level screen. Middle
     if(this.screen == 3) {
+      round++;
       
       if(playSound == true)
       {

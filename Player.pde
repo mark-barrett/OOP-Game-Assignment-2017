@@ -35,7 +35,7 @@ class Player extends GameObject
     this.score = 3000;
     this.speedPowerUp = false;
     this.ammo = 20;
-    this.fire = 'e';
+    this.fire = 'p';
     this.activeGun = 0;
     create();
   }

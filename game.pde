@@ -46,22 +46,7 @@ void setup()
   barrier2 = new Barrier(width/2+150, 560);
   gameObjects.add(barrier2);
   
-  //Zombies
-  zombie1 = new Zombie(width/2+200, height, 0.5);
-  gameObjects.add(zombie1);
-  
-  zombie2 = new Zombie(width/2+250, height, 0.5);
-  gameObjects.add(zombie2);
-  
-  zombie3 = new Zombie(width/2+300, height, 0.5);
-  gameObjects.add(zombie3);
-  
-  zombie4 = new Zombie(width/2, height, 0.5);
-  gameObjects.add(zombie4);
-  
-  zombie5 = new Zombie(width/2-300, height, 0.5);
-  gameObjects.add(zombie5);
-  
+  round = 0;
   
 }
 
@@ -117,6 +102,9 @@ boolean[] keys = new boolean[1000];
 
 float timeDelta = 1.0f / 60.00f;
 
+//Round counter
+int round;
+
 void draw()
 {
   //Keep drawing the screen
@@ -133,16 +121,10 @@ void draw()
     mp40.render();
     barrier1.render();
     barrier2.render();
-    zombie1.render();
-    zombie2.render();
-    zombie3.render();
-    zombie4.render();
-    zombie5.render();
+    
   }
-  println("MP40:"+mp40.ammo);
-  println("Colt:"+colt.ammo);
-  
-  //Render bullets
+  println(round);
+  //Render bullets and zombies
   for(int i=gameObjects.size()-1; i >= 0; i--)
   {
     GameObject go = gameObjects.get(i);
@@ -154,6 +136,27 @@ void draw()
         gameObjects.remove(b);
       }
     }
+    if(go instanceof Zombie) {
+      Zombie z = (Zombie) go;
+      z.render();
+    }
+  }
+  
+  
+  //Manage rounds
+  //Round 1
+  if(round == 1)
+  {
+    for(int i = 0; i<5; i++)
+    {
+      if(frameCount % 120 == 0)
+      {
+        println("Hey");
+       Zombie zombie = new Zombie(random(0, width), height, 0.8);
+       gameObjects.add(zombie); 
+      }
+    }
+    
   }
 }
 

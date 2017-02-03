@@ -6,6 +6,7 @@ class Zombie extends GameObject
   int health;
   float speed;
   float random;
+  int barrier;
   
   Zombie(float x, float y, float speed)
   {
@@ -15,6 +16,7 @@ class Zombie extends GameObject
     this.health = 100;
     this.theta = 0;
     this.random = random(0,2);
+    this.barrier = (int)random(2);
     create();
   }
   
@@ -49,7 +51,7 @@ class Zombie extends GameObject
     shape.addChild(sleeve1);
     shape.addChild(sleeve2);
     
-   if(this.random > 0 && this.random <= 1)
+       if(this.random > 0 && this.random <= 1)
    {
      zombieSound1.play();
    }
@@ -61,6 +63,8 @@ class Zombie extends GameObject
    {
      zombieSound3.play();
    }
+
+   
   }
   
   void render()
@@ -78,44 +82,53 @@ class Zombie extends GameObject
   
   void update()
   {
-    theta = atan2(player1.pos.y - pos.y, player1.pos.x - pos.x) + HALF_PI;
-    forward = new PVector(sin(theta), -cos(theta));    
-    forward.normalize();
-    pos.add(PVector.mult(forward, speed));
-    
-    //If outside the room, move the zombie to the bottom of the screen where the barriers are
-    if(pos.x < width/2-450 || pos.x > (width/2-500) + 950)
+    println(this.barrier);
+    if(health < 0)
     {
-      pos.y = lerp(pos.y, height-50, 0.005);
+      gameObjects.remove(this);
     }
     
-    //If the zombie is at the bottom of the room get them to go through barrier 1
-    if(pos.y > height-90)
+    //If the zombie is in any other place apart form the gaps
+    if(pos.x < barrier1.pos.x || pos.x > barrier1.pos.x + 150 && pos.x < barrier2.pos.x || pos.x < barrier2.pos.x + 150)
     {
-      pos.x = lerp(pos.x, barrier1.pos.x, 0.005);
-    }
-    
-    //If the zombie is anywhere in front of the barrier, move them inside.
-    if(pos.x < (barrier1.pos.x+100))
-    {
-      if(barrier1.damage > 0)
+      //If the zombie is against the wall
+      if(pos.y < 650)
       {
-        barrier1.damage -= 0.3;
+        pos.y += 0.5;
       }
-      else {
-        pos.y = lerp(pos.y, barrier1.pos.y-100, 0.005);
-      }
-    }
-    
-    //If the zombie is inside, lerp to the players position
-    if(pos.x > width/2-450 && pos.x < (width/2-500) + 950)
-    {
-      if(pos.y > 75 && pos.y < 575)
+      if(pos.y < barrier1.pos.y)
       {
-        pos.x = lerp(pos.x, player1.pos.x+20, 0.005);
-        pos.y = lerp(pos.y, player1.pos.y+20, 0.005);
+       pos.y -= 0.5; 
       }
+      
     }
+    /* Move towards player */
+    if(pos.x > width/2-500 && pos.x < (width/2-500) + 1000 && pos.y > 75 && pos.y < 575)
+    {
+        theta = atan2(player1.pos.y - pos.y, player1.pos.x - pos.x) + HALF_PI;
+        forward = new PVector(sin(theta), -cos(theta));    
+        forward.normalize();
+        pos.add(PVector.mult(forward, speed));
+    }
+    else {
+       /* Move towards barrier 0 */
+        if(this.barrier == 0)
+        {
+           theta = atan2(barrier1.pos.y - pos.y, barrier1.pos.x+50 - pos.x) + HALF_PI;
+           forward = new PVector(sin(theta), -cos(theta));    
+           forward.normalize();
+           pos.add(PVector.mult(forward, speed));
+        }
+        else if(this.barrier == 1)
+        {
+           theta = atan2(barrier2.pos.y - pos.y, barrier2.pos.x+50 - pos.x) + HALF_PI;
+           forward = new PVector(sin(theta), -cos(theta));    
+           forward.normalize();
+           pos.add(PVector.mult(forward, speed));
+        }
+    }
+   
+    
     
     /* Loop through game objects and checking to see if a zombie is in the range of another.
     If it is then move it */
@@ -123,29 +136,18 @@ class Zombie extends GameObject
   for(int i=gameObjects.size()-1; i >= 0; i--)
   {
     GameObject go = gameObjects.get(i);
-    if(go instanceof Zombie) {
-      Zombie z = (Zombie) go; //If it is indeed a player you can cast it
-      
-      if(pos.x < z.pos.x && pos.x > z.pos.x - 80) {
-        pos.x--;
-      }
-      if(pos.x > z.pos.x && pos.x < z.pos.x + 80) {
-        pos.x++;
-      }
-
-    }
     if(go instanceof Bullet) {
      Bullet b = (Bullet) go;
-     if(b.pos.x > pos.x - 30 && b.pos.x < pos.x + 30)
+     if(b.pos.x > pos.x - 30 && b.pos.x < pos.x + 50)
      {
-       if(b.pos.y > pos.y - 30 && b.pos.y < pos.y + 30)
+       if(b.pos.y > pos.y - 30 && b.pos.y < pos.y + 50)
        {
         health -= 7; 
         player1.score += 50;
+        b.active = false;
        }
     }
     }
-    println(health);
   }
         
     
