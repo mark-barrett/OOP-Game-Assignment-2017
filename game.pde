@@ -47,6 +47,7 @@ void setup()
   gameObjects.add(barrier2);
   
   round = 0;
+  spawnComplete = false;
   
 }
 
@@ -104,6 +105,7 @@ float timeDelta = 1.0f / 60.00f;
 
 //Round counter
 int round;
+boolean spawnComplete;
 
 void draw()
 {
@@ -145,18 +147,15 @@ void draw()
   
   //Manage rounds
   //Round 1
-  if(round == 1)
+  if(round == 1 && spawnComplete == false)
   {
-    for(int i = 0; i<5; i++)
+    for(int i = 0; i<15; i++)
     {
-      if(frameCount % 120 == 0)
-      {
-        println("Hey");
-       Zombie zombie = new Zombie(random(0, width), height, 0.8);
+       println("Hey");
+       Zombie zombie = new Zombie(random(0, width), height, 1);
        gameObjects.add(zombie); 
-      }
     }
-    
+    spawnComplete = true;
   }
 }
 

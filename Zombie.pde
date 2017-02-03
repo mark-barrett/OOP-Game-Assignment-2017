@@ -75,6 +75,8 @@ class Zombie extends GameObject
       translate(pos.x, pos.y);
       rotate(theta);
       shape(shape, 0, 0);
+      fill(0, 255, 0);
+      rect(-25, 30, health/2, 7);
       popMatrix();
       update();
     }
@@ -138,15 +140,36 @@ class Zombie extends GameObject
     GameObject go = gameObjects.get(i);
     if(go instanceof Bullet) {
      Bullet b = (Bullet) go;
-     if(b.pos.x > pos.x - 30 && b.pos.x < pos.x + 50)
+     if(b.pos.x > pos.x-50 && b.pos.x < pos.x + 50)
      {
-       if(b.pos.y > pos.y - 30 && b.pos.y < pos.y + 50)
+       if(b.pos.y > pos.y-50 && b.pos.y < pos.y + 50)
        {
-        health -= 7; 
-        player1.score += 50;
-        b.active = false;
+        health -= 10; 
+        player1.score += 10;
+        gameObjects.remove(b);
        }
     }
+    }
+    
+    if(go instanceof Zombie) {
+      Zombie z = (Zombie) go;
+      //Collosions with each other
+      if(pos.x > z.pos.x - 25 && pos.x < z.pos.x)
+      {
+        pos.x -= 0.5;
+      }
+      if(pos.x > z.pos.x && pos.x < z.pos.x + 25)
+      {
+        pos.x += 0.5;
+      }
+      if(pos.y > z.pos.y && pos.y < z.pos.y  + 25)
+      {
+        pos.y += 0.5;
+      }
+      if(pos.y > z.pos.y - 25  && pos.y < z.pos.y)
+      {
+        pos.y -= 0.5;
+      }
     }
   }
         
