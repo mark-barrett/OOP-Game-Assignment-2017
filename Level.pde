@@ -33,8 +33,8 @@ class Level
     }
     check();
     textSize(30);
-    fill(0, 255, 0);
-    text("Level: "+levelCounter, width/2-400, height-50);
+    fill(255, 0, 0);
+    text("Level: "+levelCounter, width/2-620, height-75);
   }
   
   void check()
@@ -49,6 +49,7 @@ class Level
         level += 0.1;
         amount += 3;
         finishedLevelSpawn = true;
+        levelCounter++;
       }
       if(finishedLevelSpawn == true)
       {
