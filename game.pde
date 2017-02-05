@@ -23,6 +23,7 @@ void setup()
   zombieSound3 = new SoundFile(this, "zombie3.wav");
   thriller = new SoundFile(this, "thriller.mp3");
   perk = new SoundFile(this, "perk.wav");
+  bomb = new SoundFile(this, "bomb.mp3");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -37,6 +38,8 @@ void setup()
   
   doubleTap = new DoubleTapPowerUp(2000, 'q', color(0, 153, 255), color(186, 192, 140), "Double Tap");
   gameObjects.add(doubleTap);
+  
+  nuke = new Nuke();
   
   //Guns
   colt = new Colt(1000, 'q');
@@ -81,6 +84,7 @@ SoundFile zombieSound2;
 SoundFile zombieSound3;
 SoundFile thriller;
 SoundFile perk;
+SoundFile bomb;
 
 //Player
 Player player1;
@@ -103,6 +107,9 @@ Level level;
 
 //Easteregg
 EasterEgg easterEgg;
+
+//Nuke
+Nuke nuke;
 
 //Save File
 PrintWriter output;

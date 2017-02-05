@@ -8,10 +8,12 @@ class Level
   float elapsed;
   boolean finishedLevelSpawn;
   int levelCounter;
+  boolean nukeAwarded;
   
   Level()
   {
     finishedLevel = false;
+    nukeAwarded = false;
     level = 1;
     amount = 5;
     this.aliveZombies = 0;
@@ -35,6 +37,11 @@ class Level
     textSize(30);
     fill(255, 0, 0);
     text("Level: "+levelCounter, width/2-620, height-75);
+    
+    if(levelCounter % 1 == 0)
+    {
+      nuke.render();
+    }
   }
   
   void check()
