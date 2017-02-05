@@ -2,9 +2,9 @@ class SpeedPowerUp extends PowerUp
 {
   boolean bought;
   
-  SpeedPowerUp(float price, char buyKey, color boxColour, color panelColour)
+  SpeedPowerUp(float price, char buyKey, color boxColour, color panelColour, String name)
   {
-    super(price, buyKey, boxColour, panelColour);
+    super(price, buyKey, boxColour, panelColour, name);
     this.bought = false;
   }
   
@@ -40,6 +40,7 @@ class SpeedPowerUp extends PowerUp
           spendMoney.play();
           //Give perk
           player1.power += 4;
+          perk.play();
         }
       }
     }

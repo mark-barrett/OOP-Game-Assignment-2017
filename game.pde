@@ -22,17 +22,21 @@ void setup()
   zombieSound2 = new SoundFile(this, "zombie2.wav");
   zombieSound3 = new SoundFile(this, "zombie3.wav");
   thriller = new SoundFile(this, "thriller.mp3");
+  perk = new SoundFile(this, "perk.wav");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
   gameObjects.add(player1);
   
   //Create perks
-  speed = new SpeedPowerUp(500, 'q', color(151, 82, 0), color(186, 192, 140));
+  speed = new SpeedPowerUp(500, 'q', color(151, 82, 0), color(186, 192, 140), "Speed");
   gameObjects.add(speed);
   
-  health = new HealthPowerUp(500, 'q', color(204, 204, 0), color(186, 192, 140));
+  health = new HealthPowerUp(500, 'q', color(204, 204, 0), color(186, 192, 140), "Health");
   gameObjects.add(health);
+  
+  doubleTap = new DoubleTapPowerUp(2000, 'q', color(0, 153, 255), color(186, 192, 140), "Double Tap");
+  gameObjects.add(doubleTap);
   
   //Guns
   colt = new Colt(1000, 'q');
@@ -76,6 +80,7 @@ SoundFile zombieSound1;
 SoundFile zombieSound2;
 SoundFile zombieSound3;
 SoundFile thriller;
+SoundFile perk;
 
 //Player
 Player player1;
@@ -83,6 +88,7 @@ Player player1;
 //Perks
 SpeedPowerUp speed;
 HealthPowerUp health;
+DoubleTapPowerUp doubleTap;
 
 //Guns
 Colt colt;
@@ -97,6 +103,9 @@ Level level;
 
 //Easteregg
 EasterEgg easterEgg;
+
+//Save File
+PrintWriter output;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -130,6 +139,8 @@ void draw()
     barrier1.render();
     barrier2.render();
     easterEgg.playEasterEgg();
+    doubleTap.render();
+    doubleTap.update();
     
   }
   println(round);
@@ -175,7 +186,7 @@ void draw()
 
 
   //If the new game button is pressed
-  if(mouseX > 490 && mouseX < 775 && screen.screen == 2)
+  if(mouseX > 490 && mouseX < 775 && screen.screen == 2 && mousePressed)
   {
     if(mouseY > 280 && mouseY < 340 && screen.screen == 2)
     {
@@ -185,11 +196,26 @@ void draw()
   }
   
   //If the load game button is pressed
-  if(mouseX > 490 && mouseX < 775 && screen.screen == 2)
+  if(mouseX > 490 && mouseX < 775 && screen.screen == 2 && mousePressed)
   {
     if(mouseY > 360 && mouseY < 420 && screen.screen == 2)
     {
       buttonPressSound.play();
+      screen.screen = 5;
+    }
+  }
+  
+  if(keyPressed)
+  {
+    if(key == 'm')
+    {
+      output = createWriter("saves/saveGame.txt");
+      output.println("Level Counter, Amount, Level, \n"+level.levelCounter+", "+level.amount+", "+level.level);
+      output.flush(); // Writes the remaining data to the file
+      output.close(); // Finishes the file
+      textSize(20);
+      fill(255, 0, 0);
+      text("Game Saved!", width/2-200, height/2);
     }
   }
 }
@@ -197,6 +223,7 @@ void draw()
 void keyPressed()
 { 
   keys[keyCode] = true;
+  
 }
  
 void keyReleased()

@@ -55,7 +55,7 @@ class MP40 extends Gun
           text("Press Q to buy MP40 [Cost: 2000]", width/2-200, height/2);
           if (checkKey(super.buyKey))
           {
-            if(player1.score >= 1000)
+            if(player1.score >= 2000 && this.ammo == 0)
             {
             player1.score -= super.price;
             player1.activeGun = 2;
@@ -70,7 +70,7 @@ class MP40 extends Gun
           text("Press Q to buy Ammo [Cost: 500]", width/2-200, height/2);
           if (checkKey(super.buyKey))
           {
-            if(player1.score >= 500 && mp40.ammo == 0)
+            if(player1.score >= 500)
             {
              player1.score -= 500;
              mp40.ammo += 100;
