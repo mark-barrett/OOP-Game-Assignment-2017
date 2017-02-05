@@ -38,7 +38,7 @@ class Level
     fill(255, 0, 0);
     text("Level: "+levelCounter, width/2-620, height-75);
     
-    if(levelCounter % 1 == 0)
+    if(levelCounter % 4 == 0)
     {
       nuke.render();
     }
@@ -46,6 +46,7 @@ class Level
   
   void check()
   {
+    println("Alive Zombies:"+aliveZombies);
     if(aliveZombies == 0)
     {
       elapsed += timeDelta;

@@ -35,7 +35,7 @@ class Nuke
   
   void update()
   {
-    if(dist(pos.x, pos.y, player1.pos.x, player1.pos.y) < 50 && this.used == false)
+    if(dist(pos.x, pos.y, player1.pos.x, player1.pos.y) < 80 && this.used == false)
     {
       this.used = true;
       
@@ -45,16 +45,13 @@ class Nuke
          GameObject go = gameObjects.get(i);
          if(go instanceof Zombie) {
           Zombie z = (Zombie) go;
-          
+          level.aliveZombies--;
           gameObjects.remove(z);
           player1.score += 100;
-          
-          
          }
       }
       bomb.play();
-      
     }
-    
+    gameObjects.remove(this);
   }
 }

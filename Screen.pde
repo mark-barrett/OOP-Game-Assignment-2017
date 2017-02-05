@@ -202,7 +202,8 @@ class Screen
     rect(0,0, width, height);
     fill(255, 0, 0);
     text("Game Over", 200, height/2);
-    text("Your Score:"+player1.score, 200, height/2+200);
+    text("Your Score: "+player1.score, 200, height/2+200);
+    text("You reached level: "+level.levelCounter, 200, height/2+300);
     
   }
   if(screen == 5)
