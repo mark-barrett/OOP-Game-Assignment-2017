@@ -127,9 +127,14 @@ class Player extends GameObject
   //Updates parameters used for movements, firing, health etc
   void update()
   {
+    if(this.health < 0)
+    {
+      screen.screen = 4;
+    }
     forward.x = -sin(theta);
     forward.y = cos(theta);
-    
+
+    println("Health: "+this.health);
     if(checkKey(up))
     {
       if(pos.x > width/2-450 && pos.x < (width/2-500) + 950)
@@ -183,8 +188,7 @@ class Player extends GameObject
         }
       }
     }
-    
-    println(player1.activeGun);
+   
     
     //If the m1190 is to be fired
     if(checkKey(fire) && elapsed > colttoPass && player1.activeGun == 1 && colt.bought == true)
@@ -222,5 +226,21 @@ class Player extends GameObject
       }
     }
     elapsed += timeDelta;
+    
+    for(int i=gameObjects.size()-1; i >= 0; i--)
+      {
+    GameObject go = gameObjects.get(i);
+    //Check if zombies collide with player
+    if(go instanceof Zombie) {
+      Zombie z = (Zombie) go;
+      //Collosions with each other
+      if(dist(pos.x, pos.y, z.pos.x, z.pos.y) < 50)
+      {
+        this.health -= 1;
+      }
+
+    }
+  }
+  
   }
 }

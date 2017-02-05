@@ -169,8 +169,6 @@ class Screen
       fill(0, 0, 0, this.transparency);
       rect(0, 0, 1280, 650);
       fill(255, 0, 0, this.transparency);
-      textSize(60);
-      text("12:08am - Level 1", width/2-200, height/2);
       
       if(player1.activeGun == 1)
       { 
@@ -192,5 +190,20 @@ class Screen
       }
     }
   } 
+  if(screen == 4)
+  {
+    
+    for(int i = 0; i<gameObjects.size(); i++)
+    {
+      GameObject go = gameObjects.get(i);
+      gameObjects.remove(go);
+    }
+    fill(0);
+    rect(0,0, width, height);
+    fill(255, 0, 0);
+    text("Game Over", 200, height/2);
+    text("Your Score:"+player1.score, 200, height/2+200);
+    
+  }
   }
 }

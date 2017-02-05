@@ -78,15 +78,20 @@ class Zombie extends GameObject
       fill(0, 255, 0);
       rect(-25, 30, health/2, 7);
       popMatrix();
-      update();
     }
+    update();
   }
   
   void update()
   {
-    println(this.barrier);
+    if(easterEgg.play == false)
+    {
+    forward.x = -sin(theta);
+    forward.y = cos(theta);
+
     if(health < 0)
     {
+      level.aliveZombies--;
       gameObjects.remove(this);
     }
     
@@ -147,32 +152,29 @@ class Zombie extends GameObject
         health -= 10; 
         player1.score += 10;
         gameObjects.remove(b);
+        PVector bp = PVector.add(pos, PVector.mult(forward, 40));
+        Blood blood = new Blood(bp.x, bp.y, theta, 20, 0.1);
+        gameObjects.add(blood);      
+        
        }
     }
     }
     
+    //Check if the zombie hits another zombie
     if(go instanceof Zombie) {
       Zombie z = (Zombie) go;
       //Collosions with each other
-      if(pos.x > z.pos.x - 25 && pos.x < z.pos.x)
+      if(dist(pos.x, pos.y, z.pos.x, z.pos.y) < 50)
       {
-        pos.x -= 0.5;
+
       }
-      if(pos.x > z.pos.x && pos.x < z.pos.x + 25)
-      {
-        pos.x += 0.5;
-      }
-      if(pos.y > z.pos.y && pos.y < z.pos.y  + 25)
-      {
-        pos.y += 0.5;
-      }
-      if(pos.y > z.pos.y - 25  && pos.y < z.pos.y)
-      {
-        pos.y -= 0.5;
-      }
+
     }
   }
-        
+    }
+    else if(easterEgg.play == true) {
+
+    }
     
   }
   

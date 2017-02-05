@@ -21,6 +21,7 @@ void setup()
   zombieSound1 = new SoundFile(this, "zombie1.wav");
   zombieSound2 = new SoundFile(this, "zombie2.wav");
   zombieSound3 = new SoundFile(this, "zombie3.wav");
+  thriller = new SoundFile(this, "thriller.mp3");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -46,9 +47,14 @@ void setup()
   barrier2 = new Barrier(width/2+150, 560);
   gameObjects.add(barrier2);
   
+  //Easteregg
+  easterEgg = new EasterEgg();
+  
   round = 0;
   spawnComplete = false;
   
+  //Level
+  level = new Level();
 }
 
 import processing.sound.*;
@@ -69,6 +75,7 @@ SoundFile hammer;
 SoundFile zombieSound1;
 SoundFile zombieSound2;
 SoundFile zombieSound3;
+SoundFile thriller;
 
 //Player
 Player player1;
@@ -85,12 +92,11 @@ MP40 mp40;
 Barrier barrier1;
 Barrier barrier2;
 
-//Zombies
-Zombie zombie1;
-Zombie zombie2;
-Zombie zombie3;
-Zombie zombie4;
-Zombie zombie5;
+//Levels
+Level level;
+
+//Easteregg
+EasterEgg easterEgg;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -106,7 +112,6 @@ float timeDelta = 1.0f / 60.00f;
 //Round counter
 int round;
 boolean spawnComplete;
-
 void draw()
 {
   //Keep drawing the screen
@@ -119,10 +124,12 @@ void draw()
     speed.update();
     health.render();
     health.update();
+    level.start();
     colt.render();
     mp40.render();
     barrier1.render();
     barrier2.render();
+    easterEgg.playEasterEgg();
     
   }
   println(round);
@@ -133,6 +140,23 @@ void draw()
     if(go instanceof Bullet) {
       Bullet b = (Bullet) go; //If it is indeed a player you can cast it
       b.render();
+      
+      //Check collosion for easteregg
+      if(b.pos.x > 250 && b.pos.x < 400)
+        {
+         if(b.pos.y > 80 && b.pos.y < 180)
+         {
+           easterEgg.staminUp = true;
+         }
+        }
+      if(b.pos.x > 875 && b.pos.x < 1025)
+        {
+      if(b.pos.y > 80 && b.pos.y < 180)
+      {
+        easterEgg.juggerNog = true;
+      }
+        }
+      
       if(b.pos.x < 170 || b.pos.x > 1100 || b.pos.y < 110 || b.pos.y > 550)
       {
         gameObjects.remove(b);
@@ -142,25 +166,14 @@ void draw()
       Zombie z = (Zombie) go;
       z.render();
     }
-  }
-  
-  
-  //Manage rounds
-  //Round 1
-  if(round == 1 && spawnComplete == false)
-  {
-    for(int i = 0; i<15; i++)
-    {
-       println("Hey");
-       Zombie zombie = new Zombie(random(0, width), height, 1);
-       gameObjects.add(zombie); 
+    
+    if(go instanceof Blood) {
+      Blood b = (Blood) go;
+      b.render();
     }
-    spawnComplete = true;
   }
-}
 
-void mousePressed()
-{
+
   //If the new game button is pressed
   if(mouseX > 490 && mouseX < 775 && screen.screen == 2)
   {
