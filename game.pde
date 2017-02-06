@@ -24,6 +24,7 @@ void setup()
   thriller = new SoundFile(this, "thriller.mp3");
   perk = new SoundFile(this, "perk.wav");
   bomb = new SoundFile(this, "bomb.mp3");
+  hit = new SoundFile(this, "hit.mp3");
   
   //Create player(s)
   player1 = new Player(width/2, height/2+100, 20, 20, 'w', 's', 'a', 'd', 'e');
@@ -85,6 +86,7 @@ SoundFile zombieSound3;
 SoundFile thriller;
 SoundFile perk;
 SoundFile bomb;
+SoundFile hit;
 
 //Player
 Player player1;
@@ -128,6 +130,8 @@ float timeDelta = 1.0f / 60.00f;
 //Round counter
 int round;
 boolean spawnComplete;
+
+Table table;
 void draw()
 {
   //Keep drawing the screen
@@ -216,13 +220,14 @@ void draw()
   {
     if(key == 'm')
     {
-      output = createWriter("saves/saveGame.txt");
-      output.println("Level Counter, Amount, Level, \n"+level.levelCounter+", "+level.amount+", "+level.level);
+      output = createWriter("saves/saveGame.csv");
+      output.println("Level Counter,Amount,Level,Juggernog,Double Tap,StaminUp,MP40,Colt\n"+level.levelCounter+","+level.amount+","+level.level+","
+      +health.bought+","+doubleTap.bought+","+speed.bought+","+mp40.bought+","+colt.bought);
       output.flush(); // Writes the remaining data to the file
       output.close(); // Finishes the file
-      textSize(20);
+      textSize(45);
       fill(255, 0, 0);
-      text("Game Saved!", width/2-200, height/2);
+      text("Game Saved!", width/2-100, height/2);
     }
   }
 }

@@ -93,6 +93,7 @@ class Zombie extends GameObject
     {
       level.aliveZombies--;
       gameObjects.remove(this);
+      hit.play();
     }
     
     //If the zombie is in any other place apart form the gaps
@@ -125,6 +126,10 @@ class Zombie extends GameObject
            forward = new PVector(sin(theta), -cos(theta));    
            forward.normalize();
            pos.add(PVector.mult(forward, speed));
+           if(barrier1.damage > 0)
+           {
+             barrier1.damage -= 1;
+           }
         }
         else if(this.barrier == 1)
         {
@@ -154,7 +159,7 @@ class Zombie extends GameObject
         gameObjects.remove(b);
         PVector bp = PVector.add(pos, PVector.mult(forward, 40));
         Blood blood = new Blood(bp.x, bp.y, theta, 20, 0.1);
-        gameObjects.add(blood);      
+        gameObjects.add(blood);    
         
        }
     }
@@ -166,7 +171,7 @@ class Zombie extends GameObject
       //Collosions with each other
       if(dist(pos.x, pos.y, z.pos.x, z.pos.y) < 50)
       {
-
+      
       }
 
     }

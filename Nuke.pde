@@ -51,7 +51,7 @@ class Nuke
          }
       }
       bomb.play();
+      this.used = true;
     }
-    gameObjects.remove(this);
   }
 }

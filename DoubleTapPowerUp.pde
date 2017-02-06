@@ -31,7 +31,7 @@ class DoubleTapPowerUp extends PowerUp
             player1.score -= super.price;
             this.bought = true;
             spendMoney.play();
-            player1.mp40toPass = 1.0/10;
+            player1.mp40toPass = 1.0/12;
             perk.play();
             }
           }

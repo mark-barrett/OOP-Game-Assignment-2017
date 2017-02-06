@@ -38,7 +38,7 @@ class Level
     fill(255, 0, 0);
     text("Level: "+levelCounter, width/2-620, height-75);
     
-    if(levelCounter % 4 == 0)
+    if(levelCounter % 4 == 0 && nuke.used == false)
     {
       nuke.render();
     }

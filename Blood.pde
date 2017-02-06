@@ -38,7 +38,7 @@ class Blood extends GameObject
     }
     elapsed += timeDelta;
     
-    if(elapsed > 8)
+    if(elapsed > 10)
     {
       gameObjects.remove(this);
     }

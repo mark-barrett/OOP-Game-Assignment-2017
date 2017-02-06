@@ -211,11 +211,18 @@ class Screen
     fill(0);
     stroke(0);
     rect(0,0, width, height);
-    fill(255, 0, 0);
-    textSize(30);
-    text("Save Games:", width/2-600, 200);
-    
-    
+    table = loadTable("saves/saveGame.csv", "header, csv");
+    for(TableRow row : table.rows())
+    {
+      int levelCounter = row.getInt("Level Counter");
+      float amount = row.getFloat("Amount");
+      float level1 = row.getFloat("Level");
+      level.levelCounter = levelCounter;
+      level.amount = amount;
+      level.level = level1;
+      
+    }
+    this.screen = 3;
   }
   }
 }
