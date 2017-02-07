@@ -68,7 +68,7 @@ void setup()
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(4);
+Screen screen = new Screen(1);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -154,7 +154,6 @@ void draw()
     doubleTap.update();
     
   }
-  println(round);
   //Render bullets and zombies
   for(int i=gameObjects.size()-1; i >= 0; i--)
   {
@@ -187,6 +186,7 @@ void draw()
     if(go instanceof Zombie) {
       Zombie z = (Zombie) go;
       z.render();
+      println("**");
     }
     
     if(go instanceof Blood) {
@@ -221,8 +221,8 @@ void draw()
     if(key == 'm')
     {
       output = createWriter("saves/saveGame.csv");
-      output.println("Level Counter,Amount,Level,Juggernog,Double Tap,StaminUp,MP40,Colt\n"+level.levelCounter+","+level.amount+","+level.level+","
-      +health.bought+","+doubleTap.bought+","+speed.bought+","+mp40.bought+","+colt.bought);
+      output.println("Level Counter,Amount,Level,Juggernog,Double Tap,Stamin Up,MP40,Colt,Score\n"+level.levelCounter+","+level.amount+","+level.level+","
+      +health.bought+","+doubleTap.bought+","+speed.bought+","+mp40.bought+","+colt.bought+","+player1.score);
       output.flush(); // Writes the remaining data to the file
       output.close(); // Finishes the file
       textSize(45);

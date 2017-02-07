@@ -15,6 +15,7 @@ class Screen
   //Draw the screen
   void render()
   {
+    println(screen);
     //If the loading screen is to be displayed
     if(this.screen == 1) {
       if(playSound == false)
@@ -68,7 +69,6 @@ class Screen
       {
         if(mouseY > 280 && mouseY < 340 && this.screen == 2)
         {
-          
           fill(255, 0, 0);
           rect(490, 280, 287, 62);
           fill(0);
@@ -196,7 +196,12 @@ class Screen
     for(int i = 0; i<gameObjects.size(); i++)
     {
       GameObject go = gameObjects.get(i);
-      gameObjects.remove(go);
+      
+      if(go instanceof Zombie)
+      {
+        Zombie z = (Zombie) go;
+        gameObjects.remove(z);
+      }
     }
     fill(0);
     stroke(0);
@@ -223,7 +228,7 @@ class Screen
           fill(0);
           text("Main Menu", 550, 405);
           fill(255, 0, 0);
-          if(mousePressed)
+          if(mousePressed && this.screen == 4)
           {
             this.screen = 1;
           }
@@ -235,20 +240,36 @@ class Screen
   }
   if(screen == 5)
   {
-    fill(0);
-    stroke(0);
-    rect(0,0, width, height);
     table = loadTable("saves/saveGame.csv", "header, csv");
     for(TableRow row : table.rows())
     {
       int levelCounter = row.getInt("Level Counter");
       float amount = row.getFloat("Amount");
       float level1 = row.getFloat("Level");
+      String juggernog = row.getString("Juggernog");
+      String doubleTap1 = row.getString("Double Tap");
+      String staminUp = row.getString("Stamin Up");
+      String mp401 = row.getString("MP40");
+      String colt1 = row.getString("Colt");
+      
+      if(juggernog == "true") { health.bought = true; }
+      if(doubleTap1 == "true") { doubleTap.bought = true; }
+      if(staminUp == "true") { speed.bought = true; }
+      if(mp401 == "true") { mp40.bought = true; }
+      if(colt1 == "true") { colt.bought = true; }
+      
+      
       level.levelCounter = levelCounter;
       level.amount = amount;
       level.level = level1;
       
     }
+    println("Amount: "+level.amount);
+    level.finishedLevel = false;
+    player1.health = 100;
+    stroke(0);
+    strokeWeight(2);
+
     this.screen = 3;
   }
   }

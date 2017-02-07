@@ -25,9 +25,11 @@ class Level
   {
     if(finishedLevel == false)
     {
+      println("Start");
       aliveZombies = amount;
       for(int i = 0; i<amount; i++)
       {
+        println("Zombies");
         Zombie z = new Zombie(random(width/2-400, width/2+400), height-50, level);
         gameObjects.add(z);
       }
@@ -46,11 +48,9 @@ class Level
   
   void check()
   {
-    println("Alive Zombies:"+aliveZombies);
     if(aliveZombies == 0)
     {
       elapsed += timeDelta;
-      println("Elapsed"+elapsed);
       if(elapsed > 6)
       {
         finishedLevel = false;
