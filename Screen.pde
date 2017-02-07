@@ -199,11 +199,38 @@ class Screen
       gameObjects.remove(go);
     }
     fill(0);
+    stroke(0);
     rect(0,0, width, height);
     fill(255, 0, 0);
-    text("Game Over", 200, height/2);
-    text("Your Score: "+player1.score, 200, height/2+200);
-    text("You reached level: "+level.levelCounter, 200, height/2+300);
+    textSize(50);
+    text("Game Over", width/2-100, 200);
+    text("Your Score: "+player1.score, width/2-160, height/2-30);
+    text("You reached level: "+level.levelCounter, width/2-180, height/2-80);
+      
+      fill(0);
+      stroke(255, 0, 0);
+      rect(490, 360, 285, 60);
+      textSize(40);
+      fill(255, 0, 0);
+      text("Main Menu", 550, 405);
+      //If the mouse is over the load game button
+      if(mouseX > 490 && mouseX < 775 && this.screen == 4)
+      {
+        if(mouseY > 360 && mouseY < 420 && this.screen == 4)
+        {
+          fill(255, 0, 0);
+          rect(490, 360, 287, 62);
+          fill(0);
+          text("Main Menu", 550, 405);
+          fill(255, 0, 0);
+          if(mousePressed)
+          {
+            this.screen = 1;
+          }
+        }
+      }
+      
+ 
     
   }
   if(screen == 5)

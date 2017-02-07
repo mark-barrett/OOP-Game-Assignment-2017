@@ -169,12 +169,19 @@ class Zombie extends GameObject
     if(go instanceof Zombie) {
       Zombie z = (Zombie) go;
       //Collosions with each other
-      if(dist(pos.x, pos.y, z.pos.x, z.pos.y) < 50)
-      {
-      
+      if(pos.x > width/2-500 && pos.x < (width/2-500) + 1000 && pos.y > 75 && pos.y < 575) {
+      /*
+        if(dist(pos.x, pos.y, z.pos.x, z.pos.y) < 50)
+        {
+             theta = atan2(z.pos.y - pos.y, z.pos.x+50 - pos.x) + HALF_PI;
+             forward = new PVector(-sin(theta), cos(theta));    
+             forward.normalize();
+             pos.add(PVector.mult(forward, speed));
+        }
+        */
       }
-
     }
+
   }
     }
     else if(easterEgg.play == true) {
