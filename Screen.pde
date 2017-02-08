@@ -4,12 +4,16 @@ class Screen
   //Number corrosponding to particular screen.
   int screen;
   float transparency;
+  PShape s;
   
   //Parameterised constructor. When the object is created the particular screen is set.
   Screen(int screen) {
     this.screen = screen;
     this.transparency = 255;
     this.playSound = false;
+    
+  
+
   }
   
   //Draw the screen
@@ -189,6 +193,11 @@ class Screen
         text("MP40", width/2-49, height-30);
       }
     }
+          fill(0, 34, 102);
+       rect(width/2-500+20, 95, 30, 30);
+       textFont(defaultFont);
+       fill(255);
+       text("S", width/2-500+28, 120);
   } 
   if(screen == 4)
   {
@@ -234,7 +243,6 @@ class Screen
           }
         }
       }
-      
  
     
   }

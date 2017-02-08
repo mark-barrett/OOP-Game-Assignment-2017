@@ -68,7 +68,7 @@ void setup()
 import processing.sound.*;
 
 //Start by instialising the screen to the menu
-Screen screen = new Screen(1);
+Screen screen = new Screen(3);
 
 //Declaring sounds
 SoundFile buttonPressSound;
@@ -220,14 +220,30 @@ void draw()
   {
     if(key == 'm')
     {
-      output = createWriter("saves/saveGame.csv");
-      output.println("Level Counter,Amount,Level,Juggernog,Double Tap,Stamin Up,MP40,Colt,Score\n"+level.levelCounter+","+level.amount+","+level.level+","
-      +health.bought+","+doubleTap.bought+","+speed.bought+","+mp40.bought+","+colt.bought+","+player1.score);
-      output.flush(); // Writes the remaining data to the file
-      output.close(); // Finishes the file
-      textSize(45);
-      fill(255, 0, 0);
-      text("Game Saved!", width/2-100, height/2);
+      if(player1.score > 2500)
+      {
+        player1.score -= 2500;
+        output = createWriter("saves/saveGame.csv");
+        output.println("Level Counter,Amount,Level,Juggernog,Double Tap,Stamin Up,MP40,Colt,Score\n"+level.levelCounter+","+level.amount+","+level.level+","
+        +health.bought+","+doubleTap.bought+","+speed.bought+","+mp40.bought+","+colt.bought+","+player1.score);
+        output.flush(); // Writes the remaining data to the file
+        output.close(); // Finishes the file
+        textSize(45);
+        fill(255, 0, 0);
+        text("Game Saved!", width/2-100, height/2);
+        spendMoney.play();
+      }
+    }
+  }
+  
+  
+  if(player1.pos.x > width/2-500+20 && player1.pos.x < width/2-500+60)
+  {
+    if(player1.pos.y > 90 && player1.pos.y < 140)
+    {
+        textSize(30);
+        fill(255, 255, 0);
+        text("Press M to save game [Cost: 2500]", width/2-200, height/2);
     }
   }
 }
