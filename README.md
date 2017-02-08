@@ -8,7 +8,10 @@ I based this game on Call of Duty Zombies and took a lot of inspiration from it.
 ![alt tag](http://i.imgur.com/zLaZOiZ.png)
 
 ### YouTube Video: ###
+[![Video](https://img.youtube.com/vi/yyAIHdTtOdA/0.jpg)](https://youtu.be/yyAIHdTtOdA)
 
+
+https://youtu.be/yyAIHdTtOdA
 
 ### How to Use ###
 Movement is achieved using the W, A, S, D keys. You can purchase items using the Q key, and fire with the P key. You can cycle through weapons if you have more than one using the R key.
